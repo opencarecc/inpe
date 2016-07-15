@@ -1,12 +1,19 @@
-
+﻿
 #include <LDisplay.h>
 #include <LSensorHub.h>
 #include <LAudio.h>
+#include <LGTouch.h>
 
-// add your music file name here
+// initialize variables for audio module
 #define    FILE_NAME    "rephone_audio.mp3"
-
 int volume = 6;
+
+// initialize variables for touch event
+char EVENT = 0;
+int X = 0;
+int Y = 0;
+
+int flag = 0;
 
 void setup()
 {
@@ -14,7 +21,9 @@ void setup()
 //    Serial.print("Sensor Hub test.\r\n");
 
     LAudio.begin();
-    LAudio.setVolume(volume);  
+    LAudio.setVolume(volume); 
+   
+    Tp.Init(); 
 
     Lcd.init();
     Lcd.font_init();
@@ -38,6 +47,15 @@ void loop()
 //    unsigned long data4 = 0;  // will be used for Light values
 //    long data5 = 0;  // will be used for Temp values
 
+
+// check if Sensor Hub is connected    
+    Lcd.draw_font(20, 20, "Accelerometer Ready", 0xffff00, 0);
+    if(LSensorHub.check_on_line() == false)
+    {
+        Lcd.draw_font(20, 20, "Accelerometer Off-line", 0xffff00, 0);
+        while(1);
+    }
+
 // get data from sensors    
     LSensorHub.GetAccData(&data1, &data2, &data3);
 //    LSensorHub.GetLighData(&data4);
@@ -58,28 +76,43 @@ void loop()
 //    Serial.println(str);
 //    delay(2);
 // --- end of string ---
-    
-// check if Sensor Hub is connected    
-    Lcd.draw_font(0, 0, "Accelerometer Ready", 0xffff00, 0);
-    if(LSensorHub.check_on_line() == false)
-    {
-        Lcd.draw_font(0, 20, "Accelerometer Off-line", 0xffff00, 0);
-        while(1);
-    }
+
+
+   
+
 
 // check if Free-fall (needs better algorithm)    
-    if (data1>=-50 && data1<=50 && data2>=-50 && data2<=50 && data3>=-50 && data3<=50) {
+    if (data1>=-50 && data1<=50 && data2>=-50 && data2<=50 && data3>=-50 && data3<=50) {      
+      flag = 1;
+    }
+
+    
+    while(flag==1){
       // switch screen color
       Lcd.screen_set(0xff007f);
-      Lcd.draw_font(60, 90, "TRIGGERED!", 0xff007f, 0); 
+      Lcd.draw_font(60, 90, "TRIGGERED!", 0xff007f, 0);
+      Lcd.draw_font(60, 200, "touch to stop", 0xff007f, 0);
       
       // play audio file
       AudioStatus status;
-      LAudio.playFile(storageFlash,(char*)FILE_NAME); 
+      LAudio.playFile(storageFlash,(char*)FILE_NAME);
       
-      delay(5000);
-      Lcd.screen_set(0xffff00);
+      delay(1000);
+
+      // check touch event
+      if(Tp.Event_available()){
+        Tp.Get_event_xy(&EVENT, &X, &Y);
+        if(EVENT>0){
+          flag = 0;
+          Lcd.screen_set(0xffff00);
+          break;
+        }
+      } 
     }
+    
+
+
+    
     
     
 
@@ -88,14 +121,14 @@ void loop()
 //    if(data1 > 0)
 //    {
 //        Lcd.draw_font(9*9, 20, "+", 0xffff00, 0);
-//	Lcd.draw_number(9*10, 20, data1, 0xffff00, 0);
+//  Lcd.draw_number(9*10, 20, data1, 0xffff00, 0);
 //    }
 //    else
 //    {
 //        data1 ^= 0xffffffff;
 //        data1 += 1;
 //        Lcd.draw_font(9*9, 20, "-", 0xffff00, 0);
-//	Lcd.draw_number(9*10, 20, data1, 0xffff00, 0);
+//  Lcd.draw_number(9*10, 20, data1, 0xffff00, 0);
 //    }
 //    Lcd.draw_font(9*16, 20, "mg", 0xffff00, 0);
 //
@@ -104,14 +137,14 @@ void loop()
 //    if(data2 > 0)
 //    {
 //        Lcd.draw_font(9*9, 40, "+", 0xffff00, 0);
-//	Lcd.draw_number(9*10, 40, data2, 0xffff00, 0);
+//  Lcd.draw_number(9*10, 40, data2, 0xffff00, 0);
 //    }
 //    else
 //    {
 //        data2 ^= 0xffffffff;
 //        data2 += 1;
 //        Lcd.draw_font(9*9, 40, "-", 0xffff00, 0);
-//	Lcd.draw_number(9*10, 40, data2, 0xffff00, 0);
+//  Lcd.draw_number(9*10, 40, data2, 0xffff00, 0);
 //    }
 //    Lcd.draw_font(9*16, 40, "mg", 0xffff00, 0);
 //
@@ -120,14 +153,14 @@ void loop()
 //    if(data3 > 0)
 //    {
 //        Lcd.draw_font(9*9, 60, "+", 0xffff00, 0);
-//	Lcd.draw_number(9*10, 60, data3, 0xffff00, 0);
+//  Lcd.draw_number(9*10, 60, data3, 0xffff00, 0);
 //    }
 //    else
 //    {
 //        data3 ^= 0xffffffff;
 //        data3 += 1;
 //        Lcd.draw_font(9*9, 60, "-", 0xffff00, 0);
-//	Lcd.draw_number(9*10, 60, data3, 0xffff00, 0);
+//  Lcd.draw_number(9*10, 60, data3, 0xffff00, 0);
 //    }
 //    Lcd.draw_font(9*16, 60, "mg", 0xffff00, 0);
 
