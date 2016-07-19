@@ -23,9 +23,11 @@ void setup()
 
     LAudio.begin();
     LAudio.setVolume(volume); 
-   
+
+// initialize touch   
     Tp.Init(); 
 
+// initialize LCD
     Lcd.init();
     Lcd.font_init();
     Lcd.back_light_level(50);
@@ -42,6 +44,8 @@ void setup()
 
 void loop()
 {
+  
+  // initialize variables for accelerometer data
     long data1 = 0;  // will be used for X axis values
     long data2 = 0;  // will be used for Y axis values
     long data3 = 0;  // will be used for Z axis values
@@ -79,6 +83,7 @@ void loop()
 // --- end of string ---
 
 
+// initialize var for GPS data
     unsigned char *utc_date_time = 0;
     char buffer1[21] = {0,};   
     char buffer2[21] = {0,};   
@@ -89,15 +94,17 @@ void loop()
     if (data1>=-50 && data1<=50 && data2>=-50 && data2<=50 && data3>=-50 && data3<=50) {      
       flag = 1;
       
+      // check if GPS is ready
       if(LGPS.check_online())
       {
           utc_date_time = LGPS.get_utc_date_time();
+          // get date
           sprintf(buffer1, "on %d-%d-%d  %d:%d:%d\r\n", utc_date_time[0], utc_date_time[1], utc_date_time[2], utc_date_time[3], utc_date_time[4],utc_date_time[5]);
           
-
+          // get GPS latitutde
           sprintf(buffer2, "Lat %c:%f\r\n", LGPS.get_ns(), LGPS.get_latitude());
           
-          
+          // get GPS longitude
           sprintf(buffer3, "Long %c:%f\r\n", LGPS.get_ew(), LGPS.get_longitude());    
       }
     }
@@ -106,9 +113,12 @@ void loop()
     while(flag==1){
       // switch screen color
       Lcd.screen_set(0xff007f);
+      
+      // display triggered text
       Lcd.draw_font(60, 40, "TRIGGERED!", 0xff007f, 0);
       Lcd.draw_font(60, 200, "touch to stop", 0xff007f, 0);
       
+      // display GPS data
       Lcd.draw_font(40, 100, buffer1, 0xff007f, 0);
       Lcd.draw_font(40, 120, buffer2, 0xff007f, 0);
       Lcd.draw_font(40, 140, buffer3, 0xff007f, 0);
@@ -119,7 +129,7 @@ void loop()
       
       delay(1000);
 
-      // check touch event
+      // check touch event and exit triggered state if LCD is touched
       if(Tp.Event_available()){
         Tp.Get_event_xy(&EVENT, &X, &Y);
         if(EVENT>0){
