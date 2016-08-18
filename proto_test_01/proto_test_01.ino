@@ -4,6 +4,12 @@
 #include <LGTouch.h>
 #include <LGPS.h>
 #include <stdio.h>
+#include <LCheckSIM.h>
+#include <LGSM.h>
+
+// initialize variables for GSM
+char *charbuffer = "telephone number";
+char num[20] = {0};
 
 // initialize variables for audio module
 #define    FILE_NAME    "rephone_audio.mp3"
@@ -107,6 +113,12 @@ void loop()
           // get GPS longitude
           sprintf(buffer3, "Long %c:%f\r\n", LGPS.get_ew(), LGPS.get_longitude());    
       }
+      
+      // check if SIM is ready
+      if(LCheckSIM.isCheck() == 1){
+        // start call
+        LVoiceCall.voiceCall(charbuffer);
+      }
     }
 
     
@@ -133,11 +145,20 @@ void loop()
       if(Tp.Event_available()){
         Tp.Get_event_xy(&EVENT, &X, &Y);
         if(EVENT>0){
+          Serial.println(EVENT);
           flag = 0;
+          // close call
+          LVoiceCall.hangCall();
+          // set screen to prev background color
           Lcd.screen_set(0xffff00);
+          
+          EVENT = 0;
           break;
         }
       } 
+      
+      if(LVoiceCall.getVoiceCallStatus() == IDLE_CALL)break;
+      delay(50);
     }
     
 
