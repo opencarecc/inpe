@@ -38,7 +38,7 @@ void setup()
 }
 
 void loop() 
-{
+{   
     // write text on screen
     Lcd.draw_font((xFinal/4),(yFinal/4),"Battery level is\r\n", 0xffff00, 0);
     
@@ -54,17 +54,12 @@ void loop()
       draw_rect((xFinal/2)-26,(yFinal/2)-11,52,22,0xffff00);
     }
     if (LBattery.level()==33){
-      draw_rect((xFinal/2)-26,(yFinal/2)-11,52,22,0xffff00);
-      draw_rect((xFinal/2)-26,(yFinal/2)-11,17,22,0x000000);
+      draw_rect((xFinal/2)-9,(yFinal/2)-11,35,22,0xffff00);
     }
     if (LBattery.level()==66){
-      draw_rect((xFinal/2)-26,(yFinal/2)-11,52,22,0xffff00);
-      draw_rect((xFinal/2)-26,(yFinal/2)-11,35,22,0x000000);
+      draw_rect((xFinal/2)+9,(yFinal/2)-11,17,22,0xffff00);
     }
-    if (LBattery.level()==100){
-      draw_rect((xFinal/2)-26,(yFinal/2)-11,52,22,0xffff00);
-      draw_rect((xFinal/2)-26,(yFinal/2)-11,52,22,0x000000);
-    }
+    if (LBattery.level()==100){}
     
     // check if battery is charging
     while(LBattery.isCharging()){
