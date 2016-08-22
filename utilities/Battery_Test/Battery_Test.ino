@@ -3,6 +3,12 @@
   
   Hello, this sketch will show the status of the battery
   on the Serial Monitor or on the Xadow 1.54" Touchscreen v1.0 module
+
+  HARDWARE:
+  - Xadow GSM+BLE
+  - Xadow 1.54" Touchscreen
+  - FPC Cable 35 PIN
+  - Lipo battery
   
   Alessandro Contini for http://opencare.cc/
   August 2016

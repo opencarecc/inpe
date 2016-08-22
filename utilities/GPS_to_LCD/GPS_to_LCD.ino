@@ -1,18 +1,26 @@
 ﻿/* 
-   GPS to LCD for RePhone Kit
+  GPS to LCD for RePhone Kit
+  
+  Hello, this sketch will show the data
+  > coming from the Xadow GPSv2 module
+  > to the Xadow 1.54" Touchscreen v1.0 module
+  > via the Xadow GSM+BLE module
 
-   Hello, this sketch will show the data
-     - coming from the Xadow GPSv2 module
-     - to the Xadow 1.54" Touchscreen v1.0 module
-     - via the Xadow GSM+BLE module
+  HARDWARE:
+  - Xadow GSM+BLE
+  - Xadow 1.54" Touchscreen
+  - Xadow GPSv2 module
+  - FPC Cable 35 PIN
+  - FPC Cable 11 PIN
+  - Lipo battery
 
-   It will hopefully make your GPS module debugging more convenient!
-   It's been adapted from the official "gps_test" sketch included
-   in the Arduino IDE for RePhone https://github.com/Seeed-Studio/Arduino_IDE_for_RePhone
-   which prints the data to the Serial Monitor instead.
-
-   Alessandro Contini for http://opencare.cc/
-   July 2016
+  It will hopefully make your GPS module debugging more convenient!
+  It's been adapted from the official "gps_test" sketch included
+  in the Arduino IDE for RePhone https://github.com/Seeed-Studio/Arduino_IDE_for_RePhone
+  which prints the data to the Serial Monitor instead.
+  
+  Alessandro Contini for http://opencare.cc/
+  July 2016
 */
 
 #include <LGPS.h>      // GPS library
