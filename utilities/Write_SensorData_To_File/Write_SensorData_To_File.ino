@@ -64,10 +64,14 @@ void setup(){
   if(LGPS.check_online())
       {
           utc_date_time = LGPS.get_utc_date_time();
-          sprintf(fileName, "%d%d%d-%d%d%d.txt", utc_date_time[0], utc_date_time[1], utc_date_time[2], utc_date_time[3], utc_date_time[4],utc_date_time[5]);
-          LFile.Create(fileName);
-          sprintf(fileHeader, "File created: %d-%d-%d %d:%d:%d\r\nDelay time: %d\r\n\r\n", utc_date_time[0], utc_date_time[1], utc_date_time[2], utc_date_time[3], utc_date_time[4],utc_date_time[5], delayTime);
-          LFile.Write(fileName, fileHeader);
+          // check if the GPS is actually ready
+          // by checking if the year displayed is 2016
+          if(utc_date_time[0]==16){
+            sprintf(fileName, "%d%d%d-%d%d%d.txt", utc_date_time[0], utc_date_time[1], utc_date_time[2], utc_date_time[3], utc_date_time[4],utc_date_time[5]);
+            LFile.Create(fileName);
+            sprintf(fileHeader, "File created: %d-%d-%d %d:%d:%d UTC +0\r\nDelay time: %d\r\n\r\n", utc_date_time[0], utc_date_time[1], utc_date_time[2], utc_date_time[3], utc_date_time[4],utc_date_time[5], delayTime);
+            LFile.Write(fileName, fileHeader);
+          }          
       }  
 }
 
