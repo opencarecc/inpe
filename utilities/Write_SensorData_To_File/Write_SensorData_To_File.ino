@@ -105,7 +105,7 @@ void printAcc(){
   // check fall detection
   if (X>=-50 && X<=50 && Y>=-50 && Y<=50 && Z>=-50 && Z<=50) {
     utc_date_time = LGPS.get_utc_date_time();
-    sprintf(detected, "DETECTED! on %d-%d-%d %d:%d:%d at LAT: %f LONG: %f \r\n", utc_date_time[0], utc_date_time[1], utc_date_time[2], utc_date_time[3], utc_date_time[4], utc_date_time[5], LGPS.get_latitude(), LGPS.get_longitude());
+    sprintf(detected, "DETECTED!\r\non %d-%d-%d %d:%d:%d\r\nat LAT %c:%f LONG %c:%f\r\n", utc_date_time[0], utc_date_time[1], utc_date_time[2], utc_date_time[3], utc_date_time[4], utc_date_time[5], LGPS.get_ns(), LGPS.get_latitude(), LGPS.get_ew(), LGPS.get_longitude());
     LFile.Write(fileName, detected);
   }
 }
