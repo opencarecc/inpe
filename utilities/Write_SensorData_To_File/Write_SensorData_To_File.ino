@@ -1,4 +1,4 @@
-/*
+﻿/*  
   Hello, this sketch will create a txt log file in the
   storage of the Xadow GSM+BLE module containing the data
   stream coming from the sensors.
@@ -15,6 +15,7 @@
  
   HARDWARE:
   - Xadow GSM+BLE
+  - Xadow GPS v2.2
   - Xadow GPSv2 module
   - Xadow SensorHub
   - FPC Cable 11 PIN
@@ -22,7 +23,7 @@
   
   Alessandro Contini for http://opencare.cc/
   August 2016
-*/﻿
+*/
 
 #include <LCFile.h>
 #include <LGPS.h>
