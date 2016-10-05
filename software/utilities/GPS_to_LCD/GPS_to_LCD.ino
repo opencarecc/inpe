@@ -1,26 +1,18 @@
 ﻿/* 
-  GPS to LCD for RePhone Kit
-  
-  Hello, this sketch will show the data
-  > coming from the Xadow GPSv2 module
-  > to the Xadow 1.54" Touchscreen v1.0 module
-  > via the Xadow GSM+BLE module
+   GPS to LCD for RePhone Kit
 
-  HARDWARE:
-  - Xadow GSM+BLE
-  - Xadow 1.54" Touchscreen
-  - Xadow GPSv2 module
-  - FPC Cable 35 PIN
-  - FPC Cable 11 PIN
-  - Lipo battery
+   Hello, this sketch will show the data
+     - coming from the Xadow GPSv2 module
+     - to the Xadow 1.54" Touchscreen v1.0 module
+     - via the Xadow GSM+BLE module
 
-  It will hopefully make your GPS module debugging more convenient!
-  It's been adapted from the official "gps_test" sketch included
-  in the Arduino IDE for RePhone https://github.com/Seeed-Studio/Arduino_IDE_for_RePhone
-  which prints the data to the Serial Monitor instead.
-  
-  Alessandro Contini for http://opencare.cc/
-  July 2016
+   It will hopefully make your GPS module debugging more convenient!
+   It's been adapted from the official "gps_test" sketch included
+   in the Arduino IDE for RePhone https://github.com/Seeed-Studio/Arduino_IDE_for_RePhone
+   which prints the data to the Serial Monitor instead.
+
+   Alessandro Contini for http://opencare.cc/
+   July 2016
 */
 
 #include <LGPS.h>      // GPS library
@@ -37,7 +29,7 @@ void setup()
     Lcd.font_init();
     Lcd.back_light_level(50);
     Lcd.screen_set(0xffff00);  // set background color
-    Lcd.draw_font(10, 10, "GPS test", 0xffff00, 0);  // write "GPS test" on the Display
+    Lcd.draw_font(10, 10, "GPS test:", 0xffff00, 0);  // write "GPS test" on the Display
 }
 
 void loop()
@@ -49,6 +41,8 @@ void loop()
     // check if GPS module is connected
     if(LGPS.check_online())
     {
+        Lcd.draw_font(100, 10, "online", 0xffff00, 0);  // write "GPS online" on the Display since the GPS is connected
+        
         // get GPS data
         utc_date_time = LGPS.get_utc_date_time();
         
@@ -103,6 +97,8 @@ void loop()
         Lcd.draw_font(10, 220, buffer, 0xffff00, 0);
         // Serial.print(buffer);
         
+    } else {
+        Lcd.draw_font(100, 10, "offline", 0xffff00, 0);  // write "GPS offline" on the Display since the GPS is not connected
     }    
     delay(1000);
 }
