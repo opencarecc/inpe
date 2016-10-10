@@ -21,9 +21,9 @@ int X = 0;
 int Y = 0;
 
 // initialize variables for accelerometer data
-long data1 = 0;  // will be used for X axis values
-long data2 = 0;  // will be used for Y axis values
-long data3 = 0;  // will be used for Z axis values
+long accData1 = 0;  // will be used for X axis values
+long accData2 = 0;  // will be used for Y axis values
+long accData3 = 0;  // will be used for Z axis values
 
 // initialize variables for Light data
 //unsigned long data4 = 0;
@@ -38,12 +38,27 @@ char bufferDateTime[30] = {0,};
 // check to repeat alarm
 int flag = 0;
 
+int checkFlag = 0;
+
 // check to send SMS only once
 //int numRuns = 0;
 //int maxRuns = 1;
 
 // string to save the SMS SENT or NOT SENT data
 char *SMSsentFeedback;
+
+// string to save the System Ready or System Error data
+char *systemCheck;
+
+// string to save the Sensor Hub Status (ON/OFF) data 
+char *sensorHubStatus;
+// string to save the GPS (ON/OFF) data 
+char *GPSState;
+// string to save the GPS (Sync/Ready/Error) data 
+char *GPSStatus;
+
+// string to save the SIM Status (OK/Error) data 
+char *SIMStatus;
 
 // set min and max coordinates for easier positioning on LCD screen
 int xInit = 0;
@@ -76,7 +91,7 @@ void setup()
   Lcd.font_init();
   Lcd.back_light_level(50);
   Lcd.screen_set(0x000000);
-//  vm_graphic_set_font_size(18);
+//  vm_graphic_set_font_size(18);  // this is the function in the API to change font size
 }
 
 void loop()
@@ -85,19 +100,11 @@ void loop()
   checkGPS();
   checkSIM();
   
-  // Check if System is ready
-  if(checkSensorHub()==1 && checkGPS()==1 && checkSIM()==1){
-    Lcd.draw_font(55, 130, "System Ready", 0, 0xffffff);
-//    Serial.println("Ready");
-  } else {
-    Lcd.draw_font(55, 130, "System Error ", 0x000000, 0xffffff);
-  }
-  
-  createHeader();
-  displayDate(); 
-  displayTime(); 
-  Lcd.draw_font(80, 105, "In Pe' is", 0, 0xffffff);
-  
+  checkSystem();
+
+createHeader();
+homeScreen();
+
   if(detectFall()==1){
     Serial.println("Fall detected");
     flag = 1;
@@ -113,7 +120,7 @@ void loop()
 }
 
 
-/* ==== HEADER ==== */
+/* ==== UI HEADER ==== */
 void createHeader(){
   draw_rect(0, 0, 240, 30, 0xffffff);
   batteryLevel();
@@ -177,48 +184,65 @@ void batteryLevel(){
 /* ==== CHECK ACCELEROMETER ==== */
 /* Check if Accelerometer is working */
 boolean checkSensorHub() {
-  Lcd.draw_font(10, 200, "Acc:", 0, 0xffffff);
+//  Lcd.draw_font(10, 200, "Acc:", 0, 0xffffff);
   switch(LSensorHub.check_on_line()){
     /* if Sensor Hub is not connected */
     case 0:                                           
-      Lcd.draw_font(10, 220, "OFF", 0, 0xffffff);
+//      Lcd.draw_font(10, 220, "OFF", 0, 0xff0000);
+      sensorHubStatus = "OFF";
       return 0;
       break;
     /* if Sensor Hub is connected */
     case 1:                                           
-      LSensorHub.GetAccData(&data1, &data2, &data3);
+      LSensorHub.GetAccData(&accData1, &accData2, &accData3);
       /* and if you are receiving values different than zero from the Accelerometer */  
-      if (data1!=0 && data2!=0 && data3!=0) {
-        Lcd.draw_font(10, 220, "ON  ", 0, 0xffffff);
+      if (accData1!=0 && accData2!=0 && accData3!=0) {
+//        Lcd.draw_font(10, 220, "ON  ", 0, 0xffffff);
+        sensorHubStatus = "ON  ";
+        return 1;
       }
-      return 1;
       break;
+  }
+}
+/* Display Accelerometer State */
+void displaySensorHub(){
+  Lcd.draw_font(10, 200, "Acc:", 0, 0xffffff);
+  if(checkSensorHub()){
+    // if SensorHub is connected display sensorHubStatus in white
+    Lcd.draw_font(10, 220, sensorHubStatus, 0, 0xffffff);
+  } else {
+    // if SensorHub is connected display sensorHubStatus in red
+    Lcd.draw_font(10, 220, sensorHubStatus, 0, 0xff0000);
   }
 }
 
 /* ==== CHECK GPS ==== */
 /* Check if GPS is working */
 boolean checkGPS() {  
-  Lcd.draw_font((xFinal/2)-30, 200, "GPS:", 0, 0xffffff);
+//  Lcd.draw_font((xFinal/2)-30, 200, "GPS:", 0, 0xffffff);
   switch(LGPS.check_online()){
     /* if GPS module is not connected */
     case 0:
-      Lcd.draw_font((xFinal/2)-30, 220, "OFF        ", 0, 0xffffff);
+      Lcd.draw_font((xFinal/2)-30, 220, "OFF        ", 0, 0xff0000);
       return 0;
       break;
     /* if GPS module is connected */
     case 1:
-      Lcd.draw_font((xFinal/2)-30, 220, "ON  ", 0, 0xffffff);
+//      Lcd.draw_font((xFinal/2)-30, 220, "ON  ", 0, 0xffffff);
+      GPSState = "ON  ";
       /* if GPS Status is V(=navigation receiver warning) */
       if (LGPS.get_status()==86) {
-        Lcd.draw_font((xFinal/2)+8, 220, "Sync  ", 0, 0xffffff);
+//        Lcd.draw_font((xFinal/2)+8, 220, "Sync  ", 0, 0xff0000);
+          GPSStatus = "Sync  ";
       }
       /* if GPS Status is A(=Valid position) */
       else if (LGPS.get_status()==65) {
-        Lcd.draw_font((xFinal/2)+8, 220, "Ready", 0, 0xffffff);
+//        Lcd.draw_font((xFinal/2)+8, 220, "Ready", 0, 0xffffff);
+        GPSStatus = "Ready";
         return 1;
       } else {
-        Lcd.draw_font((xFinal/2)+8, 220, "Error", 0, 0xffffff);
+//        Lcd.draw_font((xFinal/2)+8, 220, "Error", 0, 0xff0000);
+        GPSStatus = "Error";
       }
       break;
   }
@@ -228,32 +252,75 @@ boolean checkGPS() {
 //Lcd.draw_number(60, 30, LGPS.check_online(), 0, 0xffffff);
 //Lcd.draw_number(80, 30, LGPS.get_status(), 0, 0xffffff);
 }
+void displayGPS(){
+  Lcd.draw_font((xFinal/2)-30, 200, "GPS:", 0, 0xffffff);
+  if (LGPS.check_online()){
+    // if GPS is connected display GPSState in white
+    Lcd.draw_font((xFinal/2)-30, 220, GPSState, 0, 0xffffff);
+    if (LGPS.get_status()==65) {
+      // if GPS status is A display GPSStatus in white
+      Lcd.draw_font((xFinal/2)+8, 220, GPSStatus, 0, 0xffffff);
+    } else {
+      // if GPS status is V or error display GPSStatus in red
+      Lcd.draw_font((xFinal/2)+8, 220, GPSStatus, 0, 0xff0000);
+    }
+  } else {
+    // if GPS is connected display GPSState in red
+    Lcd.draw_font((xFinal/2)-30, 220, GPSState, 0, 0xff0000);
+  }
+}
 
 
 /* ==== CHECK SIM ==== */
 /* Check if a SIM card is inserted */
 boolean checkSIM() {
-  Lcd.draw_font(190, 200, "SIM:", 0, 0xffffff);
+//  Lcd.draw_font(190, 200, "SIM:", 0, 0xffffff);
   switch(LCheckSIM.isCheck()){
     /* if SIM is not inserted */
     case 0:
-      Lcd.draw_font(190, 220, "Error", 0, 0xffffff);
+//      Lcd.draw_font(190, 220, "Error", 0, 0xff0000);
+      SIMStatus = "Error";
       return 0;
       break;
     /* if SIM is inserted */
     case 1:
-      Lcd.draw_font(190, 220, "OK   ", 0, 0xffffff);
+//      Lcd.draw_font(190, 220, "OK   ", 0, 0xffffff);
+      SIMStatus = "OK   ";
       return 1;
       break;
+  }
+}
+void displaySIM(){
+  Lcd.draw_font(190, 200, "SIM:", 0, 0xffffff);
+  if(LCheckSIM.isCheck()){
+    Lcd.draw_font(190, 220, SIMStatus, 0, 0xffffff);
+  } else {
+    Lcd.draw_font(190, 220, SIMStatus, 0, 0xff0000);
+  }
+}
+
+/* ==== CHECK SYSTEM READY ==== */
+// Check if System is ready
+boolean checkSystem(){
+  if(checkSensorHub()==1 && checkGPS()==1 && checkSIM()==1){
+    systemCheck = "System Ready";
+//    Lcd.draw_font(55, 130, "System Ready", 0, 0xffffff);
+//    Serial.println("Ready");
+    return 1;
+  } else {
+    systemCheck = "System Error";
+//    Lcd.draw_font(55, 130, "System Error ", 0x000000, 0xffffff);
+//    Serial.println("System Error");
+    return 0;
   }
 }
 
 /* ==== FALL DETECTION ==== */
 boolean detectFall() {
   // get data from sensors
-  LSensorHub.GetAccData(&data1, &data2, &data3);
+  LSensorHub.GetAccData(&accData1, &accData2, &accData3);
   // check if Free-fall (needs better algorithm)
-  if (data1 >= -50 && data1 <= 50 && data2 >= -50 && data2 <= 50 && data3 >= -50 && data3 <= 50) {
+  if (accData1 >= -50 && accData1 <= 50 && accData2 >= -50 && accData2 <= 50 && accData3 >= -50 && accData3 <= 50) {
 //    flag = 1;
     return 1;
   } else {
@@ -262,7 +329,7 @@ boolean detectFall() {
 }
 
 
-
+/* ==== START A CALL TO SELECTED NUMBER ==== */
 void doTheCall() {
 //Serial.println("do the call");
   // check if SIM is ready
@@ -272,6 +339,7 @@ void doTheCall() {
   }
 }
 
+/* ==== SEND SMS TO SELECTED NUMBER ==== */
 void doSMS() {
 //  if(numRuns<maxRuns){
     char SMScontent[159] = {0,};
@@ -302,7 +370,7 @@ void doSMS() {
 }
 
 
-
+/* ==== START ALARM ==== */
 void doTheAlarm() {
   Serial.println("do the alarm");
   // initialize var for GPS data
@@ -365,10 +433,8 @@ void doTheAlarm() {
       EVENT = 0;
       return;
     }
-  }
+  }  
   
-  
-
 /* IDLE CALL - not working because of voice mail */
 //  if (LVoiceCall.getVoiceCallStatus() == IDLE_CALL) {
 //    Serial.println("Call in idle");
@@ -387,70 +453,116 @@ void doTheAlarm() {
   delay(50);
 }
 
+/* ==== HOME SCREEN ==== */
+void homeScreen(){
+//  Lcd.screen_set(0x000000);
+// flush content by creating a new background
+  draw_rect(0,30,240,210,0x000000);
+  
+  while(checkFlag==0){
+    createHeader();
+    displayDate();
+    displayTime(); 
+    Lcd.draw_font(80, 105, "In Pe' is", 0, 0xffffff);
+    Lcd.draw_font(55, 130, systemCheck, 0, 0xffffff);
+    displaySensorHub();
+    displayGPS();
+    displaySIM();
+    
+    // if a touch event is detected
+    if (Tp.Event_available()) {
+      Tp.Get_event_xy(&EVENT, &X, &Y);
+      if (EVENT > 0 && Y >= 200 && Y <= 240) {
+        checkFlag = 1;
+        systemCheckScreen();     
+      }
+    }
+  }   
+}
 
+/* ==== SYSTEM CHECK SCREEN ==== */
+void systemCheckScreen() {  
+//  Lcd.screen_set(0x000000);
+// flush content by creating a new background
+draw_rect(0,30,240,210,0x000000);
+
+  while(checkFlag == 1){
+    createHeader();
+    displayDate();
+    displaySensorHubValuesLCD();
+    displayGPSDataLCD();
+    Lcd.draw_font(40, 220, " touch to go back", 0xffffff, 0x000000);
+    
+    // if a touch event is detected
+    if (Tp.Event_available()) {
+      Tp.Get_event_xy(&EVENT, &X, &Y);
+      if (EVENT > 0 && Y >= 220 && Y <= 240) {
+        checkFlag = 0;
+        homeScreen();     
+      }
+    }
+  }
+}
 
 /* ==== DISPLAY GPS DATA TO LCD ==== */
-//void displayGPSDataLCD() {
-//  char GPSDataBuffer[50] = {0,};
-//  sprintf(GPSDataBuffer, "Status %c\r\n", LGPS.get_status());
-//  Lcd.draw_font(10, 100, GPSDataBuffer, 0, 0xffffff);
-//  sprintf(GPSDataBuffer, "Lat %c:%f\r\n", LGPS.get_ns(), LGPS.get_latitude());
-//  Lcd.draw_font(10, 120, GPSDataBuffer, 0, 0xffffff);
-//  sprintf(GPSDataBuffer, "Long %c:%f\r\n", LGPS.get_ew(), LGPS.get_longitude());
-//  Lcd.draw_font(10, 140, GPSDataBuffer, 0, 0xffffff);
-//}
+void displayGPSDataLCD() {
+  Lcd.draw_font(10, 120, "GPS", 0, 0xffffff);
+  char GPSDataBuffer[50] = {0,};
+  sprintf(GPSDataBuffer, "Status: %c\r\n", LGPS.get_status());
+  Lcd.draw_font(10, 140, GPSDataBuffer, 0, 0xffffff);
+  sprintf(GPSDataBuffer, "Lat %c:%f\r\n", LGPS.get_ns(), LGPS.get_latitude());
+  Lcd.draw_font(10, 160, GPSDataBuffer, 0, 0xffffff);
+  sprintf(GPSDataBuffer, "Long %c:%f\r\n", LGPS.get_ew(), LGPS.get_longitude());
+  Lcd.draw_font(10, 180, GPSDataBuffer, 0, 0xffffff);
+}
 
 
 /* ==== DISPLAY SENSOR HUB VALUES TO LCD ==== */
-// void displaySensorHubValuesLCD() {
-///* print Acc X value to LCD */
-//    Lcd.draw_font(0, 20, "Acc X:        ", 0xffff00, 0);
-//    if(data1 > 0)
-//    {
+ void displaySensorHubValuesLCD() {
+    // get data from sensors
+    LSensorHub.GetAccData(&accData1, &accData2, &accData3);
+    Lcd.draw_font(10, 50, "Accelerometer", 0, 0xffffff);
+/* print Acc X value to LCD */
+    Lcd.draw_font(10, 70, "X:", 0, 0xffffff);
+    if(accData1 > 0){
 //        Lcd.draw_font(9*9, 20, "+", 0xffff00, 0);
-//  Lcd.draw_number(9*10, 20, data1, 0xffff00, 0);
-//    }
-//    else
-//    {
-//        data1 ^= 0xffffffff;
-//        data1 += 1;
-//        Lcd.draw_font(9*9, 20, "-", 0xffff00, 0);
-//  Lcd.draw_number(9*10, 20, data1, 0xffff00, 0);
-//    }
+//        Lcd.draw_number(9*10, 20, data1, 0xffff00, 0);
+        Lcd.draw_font(10, 90, "+", 0, 0xffffff);
+        Lcd.draw_number(20, 90, accData1, 0, 0xffffff);
+    } else {
+        accData1 ^= 0xffffffff;
+        accData1 += 1;
+        Lcd.draw_font(10, 90, "-", 0, 0xffffff);
+        Lcd.draw_number(20, 90, accData1, 0, 0xffffff);
+    }
 //    Lcd.draw_font(9*16, 20, "mg", 0xffff00, 0);
-//
-///* print Acc Y value to LCD */
-//    Lcd.draw_font(0, 40, "Acc Y:        ", 0xffff00, 0);
-//    if(data2 > 0)
-//    {
-//        Lcd.draw_font(9*9, 40, "+", 0xffff00, 0);
-//  Lcd.draw_number(9*10, 40, data2, 0xffff00, 0);
-//    }
-//    else
-//    {
-//        data2 ^= 0xffffffff;
-//        data2 += 1;
-//        Lcd.draw_font(9*9, 40, "-", 0xffff00, 0);
-//  Lcd.draw_number(9*10, 40, data2, 0xffff00, 0);
-//    }
+
+/* print Acc Y value to LCD */
+    Lcd.draw_font((xFinal/2)-20, 70, "Y:", 0, 0xffffff);
+    if(accData2 > 0){
+        Lcd.draw_font((xFinal/2)-20, 90, "+", 0, 0xffffff);
+        Lcd.draw_number((xFinal/2)-10, 90, accData2, 0, 0xffffff);
+    } else {
+        accData2 ^= 0xffffffff;
+        accData2 += 1;
+        Lcd.draw_font((xFinal/2)-20, 90, "-", 0, 0xffffff);
+        Lcd.draw_number((xFinal/2)-10, 90, accData2, 0, 0xffffff);
+    }
 //    Lcd.draw_font(9*16, 40, "mg", 0xffff00, 0);
-//
-///* print Acc Z value to LCD */
-//    Lcd.draw_font(0, 60, "Acc Z:        ", 0xffff00, 0);
-//    if(data3 > 0)
-//    {
-//        Lcd.draw_font(9*9, 60, "+", 0xffff00, 0);
-//  Lcd.draw_number(9*10, 60, data3, 0xffff00, 0);
-//    }
-//    else
-//    {
-//        data3 ^= 0xffffffff;
-//        data3 += 1;
-//        Lcd.draw_font(9*9, 60, "-", 0xffff00, 0);
-//  Lcd.draw_number(9*10, 60, data3, 0xffff00, 0);
-//    }
+
+/* print Acc Z value to LCD */
+    Lcd.draw_font((xFinal)-50, 70, "Z:", 0, 0xffffff);
+    if(accData3 > 0){
+        Lcd.draw_font((xFinal)-50, 90, "+", 0, 0xffffff);
+        Lcd.draw_number((xFinal)-40, 90, accData3, 0, 0xffffff);
+    } else {
+        accData3 ^= 0xffffffff;
+        accData3 += 1;
+        Lcd.draw_font((xFinal)-50, 90, "-", 0, 0xffffff);
+        Lcd.draw_number((xFinal)-40, 90, accData3, 0, 0xffffff);
+    }
 //    Lcd.draw_font(9*16, 60, "mg", 0xffff00, 0);
-//
+
 ///* print Light value to LCD */
 //    Lcd.draw_font(0, 80, "Light:      ", 0xffff00, 0);
 //    Lcd.draw_number(9*10, 80, data4, 0xffff00, 0);
@@ -460,8 +572,8 @@ void doTheAlarm() {
 //    Lcd.draw_font(0, 100, "Temp:     ", 0xffff00, 0);
 //    Lcd.draw_number(9*10, 100, data5, 0xffff00, 0);
 //    Lcd.draw_font(9*16, 100, "'C", 0xffff00, 0);
-//    delay(100);
-// }
+//  delay(100);
+}
 
 
 /* ==== PRINT TO PROCESSING ==== */
