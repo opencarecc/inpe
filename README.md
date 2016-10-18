@@ -3,7 +3,7 @@ In Pe' is a wearable device that detects fall and call for emergecy.
 
 In Pe' has been ideated and designed by communities living in the city of Milan (Italy), and developed by [WeMake](http://wemake.cc/) in the framework of the [opencare.cc](http://opencare.cc/) project.
 
-In Pe' is open source and released under a X license.
+In Pe' is open source. Please read below for licensing details.
 
 ## References
 * More info about the opencare.cc project can be found here <http://opencare.cc>
@@ -27,7 +27,7 @@ If you want to contribute please have a look under the *TO DO* and *WISH* labels
 
 If you want to contribute with a new feature please open a new issue under the *PROPOSAL* label explaining about it.
 
-## Licences
+## License
 
 Copyright (C) 2016 WeMake
 
