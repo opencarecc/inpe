@@ -27,7 +27,7 @@ If you want to contribute please have a look under the *TO DO* and *WISH* labels
 
 If you want to contribute with a new feature please open a new issue under the *PROPOSAL* label explaining about it.
 
-**THANKS!**
+*THANKS!*
 
 
 
