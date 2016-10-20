@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  
+  {% include head.html %}
+
+  <body>    
+    {% include navbar.html %}
+
+	  {% include homeheader.html %}
+
+    <section class="main-content">    
+      {{ content }}
+
+      <!-- Home page comments -->
+      <div class="notecomments">
+        {% include disqus.html %}  
+      </div>
+
+      
+      {% include footer.html %} 
+    </section>
+
+    {% include ganalytics.html %}
+    {% include jquery.html %}
+    {% include slick.html %}
+  </body>
+</html>

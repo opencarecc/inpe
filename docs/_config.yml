@@ -1,0 +1,9 @@
+name: Prototype01 of the opencare project
+markdown: kramdown
+baseurl: /inpe
+permalink: /blog/:year/:month/:day/:title/
+gems:
+  - jekyll-sitemap
+  - jekyll-paginate
+paginate: 10
+paginate_path: /blog/page:num/
