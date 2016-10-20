@@ -1,6 +1,6 @@
-name: Prototype01 of the opencare project
+name: inpe
 markdown: kramdown
-baseurl: /inpe
+baseurl: inpe.opencare.cc
 permalink: /blog/:year/:month/:day/:title/
 gems:
   - jekyll-sitemap
