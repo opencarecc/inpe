@@ -1,6 +1,6 @@
 name: inpe
 markdown: kramdown
-baseurl: 
+baseurl:
 permalink: /blog/:year/:month/:day/:title/
 gems:
   - jekyll-sitemap
