@@ -21,7 +21,7 @@ In the software folder of the repository are various Arduino *.ino* sketches, al
 In the hardware section of the repository are the source files for the case *[coming soon...]*
 
 ## Bug reporting and Contributions
-If you want to report a bug please do so in the *Issues* section of the repository (<https://github.com/opencarecc/inpe/issues>) and mark it with a *BUG* label. Before adding a bug please do a quick search under the *BUG* label to check for known issues and avoid duplicates.
+If you want to report a bug please do so in the *[Issues](https://github.com/opencarecc/inpe/issues)* section of the repository (<https://github.com/opencarecc/inpe/issues>) and mark it with a *BUG* label. Before adding a bug please do a quick search under the *BUG* label to check for known issues and avoid duplicates.
 
 If you want to contribute please have a look under the *TO DO* and *WISH* labels to see what features are in the pipeline and what is the status of their development.
 
