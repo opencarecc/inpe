@@ -4,9 +4,7 @@ title: About Prototype01 by opencare.cc
 published: true
 ---
 
-# About page
-
-### About InPe'
+# About InPe'
 InPe' is a simple device that helps taking care of someone in case they fall down. The device is designed as a wearable that calls the caregiver and sends sms with coordinates, in order for them to come and help the person who fell down.  Inspired by true stories, InPe, serves different needs such as elderly parents living by themselves, or helping a caregiver in a community center. 
 
 
