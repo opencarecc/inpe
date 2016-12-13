@@ -31,6 +31,9 @@
 
 #include "sleep.h"
 
+bool stopGPScheck = FALSE;
+bool displayDateTime = FALSE;
+
 // GPS values to name the file
 unsigned char *utc_date_time = 0;
 char fileName[100] = {0,};
@@ -90,48 +93,102 @@ void setup() {
   
   Lcd.draw_font(10,10,"-- Battery test --", 0x000000, 0xffffff, 20);
   
-  Lcd.draw_font(10,40,"GPS sync", 0x000000, 0xffffff, 20);
+//  Lcd.draw_font(10,40,"GPS sync", 0x000000, 0xffffff, 20);
   
   // if GPS is online:
   // - convert UTC data into int and set time using DateTime library
   // - create file
   // - name it with date and time
   // - add header in the txt file 
-  if(LGPS.check_online())
-      {
-          Lcd.draw_font(10,40,"GPS online", 0x000000, 0xffffff, 20);
-          
-          utc_date_time = LGPS.get_utc_date_time();
-          // check if the GPS is actually ready
-          // by checking if the year displayed is 2016 or later
-          if(utc_date_time[0]>=16 && utc_date_time[0]!=80){
-            Lcd.draw_font(10,40,"GPS READY  ", 0x000000, 0xffffff, 20);
-            
-            convertGPStimeToInt();
-            dateTime_init();
-            LDateTime.setTime(&t);
-            
-//            sprintf(fileName, "Battery_Test-%02u%02u%02u-%02u%02u%02u.txt", t.year, t.mon, t.day, t.hour, t.min, t.sec);
+//  if(LGPS.check_online())
+//      {
+//          
+//          
+//          utc_date_time = LGPS.get_utc_date_time();
+//          // check if the GPS is actually ready
+//          // by checking if the year displayed is 2016 or later
+//          if(utc_date_time[0]>=16 && utc_date_time[0]!=80){
+//            Lcd.draw_font(10,40,"GPS READY  ", 0x000000, 0xffffff, 20);
+//            
+//            convertGPStimeToInt();
+//            dateTime_init();
+//            LDateTime.setTime(&t);
+//            
+////            sprintf(fileName, "Battery_Test-%02u%02u%02u-%02u%02u%02u.txt", t.year, t.mon, t.day, t.hour, t.min, t.sec);
+////            LFile.Create(fileName);
+//            sprintf(fileName, "Batt-%02u%02u%02u-%02u%02u%02u.txt", t.year, t.mon, t.day, t.hour, t.min, t.sec);
 //            LFile.Create(fileName);
-            sprintf(fileName, "Batt-%02u%02u%02u-%02u%02u%02u.txt", t.year, t.mon, t.day, t.hour, t.min, t.sec);
-            LFile.Create(fileName);
-            
-            sprintf(fileHeader, "File created: %02u-%02u-%02u %02u:%02u:%02u\r\nUTC: %d\r\n\r\n", t.year, t.mon, t.day, t.hour, t.min, t.sec, timeZone);
-            LFile.Write(fileName, fileHeader);
-            Lcd.draw_font(10, 60, fileName, 0x000000, 0xffffff, 20);
-          }          
-      }
+//            
+//            sprintf(fileHeader, "File created: %02u-%02u-%02u %02u:%02u:%02u\r\nUTC: %d\r\n\r\n", t.year, t.mon, t.day, t.hour, t.min, t.sec, timeZone);
+//            LFile.Write(fileName, fileHeader);
+//            Lcd.draw_font(10, 60, fileName, 0x000000, 0xffffff, 20);
+//          }          
+//      }
       
   Lcd.draw_updata();  // update LCD
 }
 
 void loop() {
-  displayTime();
+  if(stopGPScheck==FALSE){  // flag to keep/stop checking the GPS
+    if(GPSready()==TRUE){    // if GPS is online and returning valid year
+      Lcd.draw_font(10,40,"GPS READY  ", 0x000000, 0xffffff, 20);
+      
+      // convert UTC data into int and set time using DateTime library
+      convertGPStimeToInt();
+      dateTime_init();
+      LDateTime.setTime(&t);
+      
+      // create file and name it with date and time
+      sprintf(fileName, "Batt-%02u%02u%02u-%02u%02u%02u.txt", t.year, t.mon, t.day, t.hour, t.min, t.sec);
+      LFile.Create(fileName);
+      
+      // add header in the txt file 
+      sprintf(fileHeader, "File created: %02u-%02u-%02u %02u:%02u:%02u\r\nUTC: %d\r\n\r\n", t.year, t.mon, t.day, t.hour, t.min, t.sec, timeZone);
+      LFile.Write(fileName, fileHeader);
+      Lcd.draw_font(10, 60, fileName, 0x000000, 0xffffff, 20);
+
+//      Lcd.screen_set(0x000000);  // flush the screen
+      
+      displayDateTime = TRUE;  // flag to start the clock
+      draw_rect(0,80,240,20,0x000000);
+      
+      stopGPScheck = TRUE;  // flag to stop checking GPS 
+    } 
+  } 
+  
+  if(displayDateTime==FALSE){  // if GPS not synced display placeholder
+    Lcd.draw_font(10, 80, "Clock Sync...", 0x000000, 0xffffff, 20);
+  }
+  if(displayDateTime==TRUE){  // if GPS synced start clock
+//    displayDate();
+    displayTime();
+  }
+  
   batteryCheck(); 
   
   sleep.sleep();
   
   Lcd.draw_updata();  // update LCD
+}
+
+/* ==== CHECK GPS ==== */
+boolean GPSready(){
+  switch(LGPS.check_online()){  // check if GPS is online
+    case 0:  // if GPS not connected return 0
+      return 0;
+      break;
+    case 1:  // if GPS connected get UTC date and time
+      Lcd.draw_font(10,40,"GPS online", 0x000000, 0xffffff, 20);
+      
+      utc_date_time = LGPS.get_utc_date_time();
+      
+      if(utc_date_time[0]>=16 && utc_date_time[0]!=80){  // if year is 2016 or later and not *80 return 1
+        return 1;
+      } else {
+        return 0;
+      }
+      break;
+  }
 }
 
 /* ==== CONVERT GPS UTC DATE AND TIME TO INT ==== */
