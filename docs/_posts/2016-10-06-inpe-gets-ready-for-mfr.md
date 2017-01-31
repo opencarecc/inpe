@@ -1,9 +1,13 @@
 ---
 layout: post
-title:  "In Pe gets ready for Maker Faire Rome"
-date:   2016-10-06
-categories: 
+title: In Pe gets ready for Maker Faire Rome
+date:
+  'Thu Oct 06 2016 02:00:00 GMT+0200 (CEST)': null
+categories: null
+published: true
 ---
+
+![InPe'](https://c2.staticflickr.com/6/5561/30399316971_da73568b2b_z.jpg)
 
 It has been several weeks now of In Pe development and we are getting close to finalizing our initial prototype before the Rome Makerfaire.  As you know, In Pe is a device developed as a result of WeMake’s hosted codesign sessions. It is based on a real story, where a caregiver was about to loose her mother, who fell down while being alone, and the caregiver couldn’t be alarmed. The existing market solutions are sometimes “embarrassing” or not appealing enough or not comfortable to wear, which makes them less efficient, as the person in need of care, will simply avoid them. In Pe (which means Standing Up
 in Italian), is a simple opensource, customizable device, that can help caregiver stay in touch with their loved ones, while keeping in mind that the designed solution is appealing enough for the person who needs care, so that they are actually using it.
