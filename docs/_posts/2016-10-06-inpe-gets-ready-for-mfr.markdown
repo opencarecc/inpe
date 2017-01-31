@@ -1,7 +1,8 @@
 ---
 layout: post
 title: In Pe gets ready for Maker Faire Rome
-date: {}
+date:
+  'Thu Oct 06 2016 02:00:00 GMT+0200 (CEST)': null
 categories: null
 published: true
 ---
