@@ -184,29 +184,7 @@ void loop() {
       displayTime();
     }
   } else {
-    Lcd.draw_font(0, 0, "Sensor Hub off-line", 0xffff00, 0, 20);
-    sprintf(dataToWrite, "%u\t%d\r\n", micros(), 1);
-    LFileExt.Write(dataToWrite); 
-         
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
-    Serial.println("Sensor Hub off-line");
+    Lcd.draw_font(0, 0, "Sensor Hub off-line", 0xffff00, 0, 20);         
     Serial.println("Sensor Hub off-line");
   }
   /* ==== END OF LOG FILE CREATION etc... ==== */
