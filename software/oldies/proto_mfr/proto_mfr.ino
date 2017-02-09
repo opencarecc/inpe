@@ -1,4 +1,4 @@
-﻿#include <LDisplay.h>
+#include <LDisplay.h>
 #include <LSensorHub.h>
 #include <LAudio.h>
 #include <LGTouch.h>
