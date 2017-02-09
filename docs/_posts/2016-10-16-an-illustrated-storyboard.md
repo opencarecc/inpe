@@ -6,7 +6,7 @@ categories: null
 published: true
 ---
 
-![image storyboard](docs/assets/inpestoryboard.jpg)
+![image storyboard](/docs/assets/inpestoryboard.jpg)
 
-Read more: 
+Read more:
 [http://inpe.opencare.cc/blog/2016/10/06/inpe-gets-ready-for-mfr/](http://inpe.opencare.cc/blog/2016/10/06/inpe-gets-ready-for-mfr/)
