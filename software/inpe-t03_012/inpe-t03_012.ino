@@ -1,4 +1,4 @@
-#include <LSensorHub.h>
+﻿#include <LSensorHub.h>
 
 // initialize variables for accelerometer data
 long accData1 = 0;  // will be used for X axis values
@@ -98,6 +98,7 @@ char dataToWrite[1000];
 int dataWritten;
 
 unsigned long writeCounter;
+boolean arrayLapped;
 
 unsigned long microsToWrite[10000];
 long accDataToWrite[10000][3];
@@ -495,6 +496,7 @@ void fillDataArray(){
   
   if(writeCounter==1000) {
     writeCounter=0;  // reset counter
+    arrayLapped = TRUE;
   }
   
 //  writeToFile();
@@ -503,9 +505,11 @@ void fillDataArray(){
 void writeToFile(){  
 //  if(writeCounter==1000) {  // log the first 1000 values
     
-    for(int i=writeCounter+1; i<=1000; i++){
-      sprintf(dataToWrite, "%u\t%d\t%d\t%d\t%u\t%u\t%u\t%u\t%u\t%u\t%u\t%u\r\n", microsToWrite[i], accDataToWrite[i][0], accDataToWrite[i][1], accDataToWrite[i][2],activityToWrite[i],accStateToWrite[i],algStateToWrite[i],fallTimeToWrite[i],impactTimeToWrite[i],inactTimeToWrite[i],detectToWrite[i],userConfirmToWrite[i]);
-      LFileExt.Write(dataToWrite); 
+    if(arrayLapped==TRUE){
+      for(int i=writeCounter+1; i<=1000; i++){
+        sprintf(dataToWrite, "%u\t%d\t%d\t%d\t%u\t%u\t%u\t%u\t%u\t%u\t%u\t%u\r\n", microsToWrite[i], accDataToWrite[i][0], accDataToWrite[i][1], accDataToWrite[i][2],activityToWrite[i],accStateToWrite[i],algStateToWrite[i],fallTimeToWrite[i],impactTimeToWrite[i],inactTimeToWrite[i],detectToWrite[i],userConfirmToWrite[i]);
+        LFileExt.Write(dataToWrite); 
+      }
     }
 
 //    for(int i=0; i<1000; i++){
@@ -514,11 +518,30 @@ void writeToFile(){
       LFileExt.Write(dataToWrite); 
     }
     writeCounter=0;  // reset counter
+    arrayLapped = FALSE;
+    eraseArray();
     
 //    writtenToFileNum++;  // amount of times LOG has been written to file
 //  }
   
 //  Lcd.draw_number(125, 100, writtenToFileNum, 0x000000, 0xffffff, 20);
+}
+
+void eraseArray() {
+  for (int i = 0; i < 1000; i++) {
+    microsToWrite[i] = 0;
+    accDataToWrite[i][0] = 0;
+    accDataToWrite[i][1] = 0;
+    accDataToWrite[i][2] = 0;
+    activityToWrite[i] = 0;
+    accStateToWrite[i] = 0;
+    algStateToWrite[i] = 0;
+    fallTimeToWrite[i] = 0;
+    impactTimeToWrite[i] = 0;
+    inactTimeToWrite[i] = 0;
+    detectToWrite[i] = 0;
+    userConfirmToWrite[i] = 0;
+  }
 }
 
 
