@@ -15,6 +15,6 @@ This video was shot during our interaction with Fabio Pinciroli and Francesco Za
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qNk2NBsRiFc" frameborder="0" allowfullscreen></iframe>
 
-In the following Album on Flickr you can explore high resolution images of the first prototype and its components and supports:
+In this [Album on Flickr](https://www.flickr.com/photos/wemake_cc/albums/72157674118203044 "Album on flickr") you can explore high resolution images of the first prototype and its components and supports:
 
-(embed gallery [https://www.flickr.com/photos/wemake_cc/albums/72157674118203044](https://www.flickr.com/photos/wemake_cc/albums/72157674118203044) )
+
