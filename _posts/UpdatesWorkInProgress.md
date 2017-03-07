@@ -30,8 +30,7 @@ In the following Album on Flickr you can explore high resolution images of the f
 
 ![In Pe']({{site.baseurl}}/https://www.flickr.com/photos/wemake_cc/31597735842/sizes/z/)
 
-(explore gallery [https://www.flickr.com/photos/wemake_cc/albums/72157674118203044](https://www.flickr.com/photos/wemake_cc/albums/72157674118203044) )
-
+[Explore the whole gallery](https://www.flickr.com/photos/wemake_cc/albums/72157674118203044 "Explore the whole gallery")  
 * * *
 
 
