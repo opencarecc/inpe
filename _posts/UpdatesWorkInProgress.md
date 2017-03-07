@@ -17,7 +17,7 @@ Blogpost In Pe’
 
 **Work in progress InPe’**
 
-![In Pe']({{site.baseurl}}/https://www.flickr.com/photos/wemake_cc/31597735842/sizes/z/)
+![Work in progress - video]({{site.baseurl}}/http://wemake.cc/core/uploads/2017/03/zava-costa.jpg)
 
 Check our latest multimedia documentation about  InPe’!
 
@@ -27,6 +27,8 @@ This video was shot during our interaction with Fabio Pinciroli and Francesco Za
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qNk2NBsRiFc" frameborder="0" allowfullscreen></iframe>
 
 In the following Album on Flickr you can explore high resolution images of the first prototype and its components and supports:
+
+![In Pe']({{site.baseurl}}/https://www.flickr.com/photos/wemake_cc/31597735842/sizes/z/)
 
 (explore gallery [https://www.flickr.com/photos/wemake_cc/albums/72157674118203044](https://www.flickr.com/photos/wemake_cc/albums/72157674118203044) )
 
