@@ -8,6 +8,7 @@ published: true
 
 ![Image Opencare](https://c2.staticflickr.com/6/5750/30448963766_907d7a9d1f_z.jpg)
 
+
 The end of the [Rome Makerfaire](http://www.makerfairerome.eu/en/) marked the closure of the workshop lead by WeMake at Domus Academy, in order to help interaction design students start projects ideas and prototypes on Opencare topics.
 
 The common theme was that the students managed to grasp the concept of opencare, and what does it mean to develop projects under the notion of care. On [Edgeryders](https://edgeryders.eu/ro/opencare-research/wemake-wrapped-up-opencare-workshop-at-domus-academy) you can find a sample of students suggestions which they already documented on the platform.
