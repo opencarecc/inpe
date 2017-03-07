@@ -6,7 +6,8 @@ categories: null
 published: true
 ---
 
-![Github repository]({{site.baseurl}}/https://www.flickr.com/photos/wemake_cc/25698634244/sizes/z/)
+![Github repository](https://www.flickr.com/photos/wemake_cc/25698634244/sizes/z/)
+
 
 Do you want to make or understand a bit more about the technicalities of InPe’? Check out our repository on Github.
 
