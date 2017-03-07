@@ -6,7 +6,7 @@ categories: null
 published: true
 ---
 
-![image storyboard](http://wemake.cc/core/uploads/2017/03/zava-costa.jpg)
+![image video](http://wemake.cc/core/uploads/2017/03/zava-costa.jpg)
 
 Check our latest multimedia documentation about  InPe’!
 
