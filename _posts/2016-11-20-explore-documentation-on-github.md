@@ -16,6 +16,8 @@ Github is a website and a service allowing people, especially software developer
 
 To understand GitHub and other similar tools providing the same type of infrastructure, you must first meet Git. Git is an open-source version control system started by Linus Torvalds – the same person who created Linux - allowing developers to create pieces of code, to release new versions, keeping the process transparent.  Every developer can see  new changes, download them, and contribute without overwriting or erasing anything.
 
+![In Pe' prototype]({{site.baseurl}}/https://www.flickr.com/photos/wemake_cc/30902848964/sizes/z/)
+
 One of the main misunderstanding about GitHub is that it’s only for coders. However, GitHub itself is like a social network where you build a profile, upload projects, share many types of files to share and connect with other users by "following" their accounts. There are many [tutorials](https://guides.github.com/activities/hello-world/) around to understand how it works if you want to get started!
 
 The InPe' prototype is built on top of the RePhone hardware by Seeed Studio. More info on how to get started with the RePhone and the RePhone development environment can be found in the [wiki section](https://github.com/opencarecc/inpe/wiki) of the repo.
