@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Title of your post
-date: June 04 2016 12:00:00  (CEST)'
+date: 'June 04 2016 12:00:00  (CEST)'''
 categories: null
-published: none
+published: true
 ---
 
 
@@ -17,7 +17,7 @@ Blogpost In Pe’
 
 **Work in progress InPe’**
 
-*(pic)*
+![In Pe']({{site.baseurl}}/https://www.flickr.com/photos/wemake_cc/31597735842/sizes/z/)
 
 Check our latest multimedia documentation about  InPe’!
 
@@ -145,4 +145,3 @@ Then we organized three co-design sessions, which involved participants from dif
 Wanna know more about methodology? opencare Playbook aka "Co-designing care services: a practical guide" is a little contribute for all innovators who wants to start to make a change in their community. The Playbook describes a general path for starting collaborative processes that you can adapt as needed. The playbook is related to engagement processes (local and online), co-design sessions, prototyping and sharing documentation as parts of the entire process.
 
 [Read the Playbook](https://playbook.opencare.cc/)
-
