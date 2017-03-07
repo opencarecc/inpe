@@ -17,7 +17,7 @@ Github is a website and a service allowing people, especially software developer
 
 To understand GitHub and other similar tools providing the same type of infrastructure, you must first meet Git. Git is an open-source version control system started by Linus Torvalds – the same person who created Linux - allowing developers to create pieces of code, to release new versions, keeping the process transparent.  Every developer can see  new changes, download them, and contribute without overwriting or erasing anything.
 
-![In Pe' prototype]({{site.baseurl}}/https://www.flickr.com/photos/wemake_cc/30902848964/sizes/z/)
+![Image InPePrototype](https://c1.staticflickr.com/1/729/30902848964_e91a98c7e1_z.jpg)
 
 One of the main misunderstanding about GitHub is that it’s only for coders. However, GitHub itself is like a social network where you build a profile, upload projects, share many types of files to share and connect with other users by "following" their accounts. There are many [tutorials](https://guides.github.com/activities/hello-world/) around to understand how it works if you want to get started!
 
