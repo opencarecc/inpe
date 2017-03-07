@@ -1,10 +1,12 @@
 ---
 layout: post
 title: Explore In Pe’ prototype documentation on Github
-date: November 20 2016 12:00:00  (CEST)'
+date: 'November 20 2016 12:00:00  (CEST)'''
 categories: null
 published: true
 ---
+
+![Github repository]({{site.baseurl}}/https://www.flickr.com/photos/wemake_cc/25698634244/sizes/z/)
 
 Do you want to make or understand a bit more about the technicalities of InPe’? Check out our repository on Github.
 
