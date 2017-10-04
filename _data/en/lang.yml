@@ -1,0 +1,157 @@
+# Hello, this is the translation file for ENGLISH language
+
+
+# ------------------------------
+# --- GLOBAL dictionary keys --- 
+# ------------------------------
+global:
+  read_more: "Read more"
+  read_more_post: "Read more"
+
+# ----------------------------------
+# --- NAVIGATION dictionary keys --- 
+# ----------------------------------
+# project_logo: "<img src='../assets/OC-logo-breathinggames.svg'>"
+
+# ---------------------------------
+# --- HOME page dictionary keys --- 
+# ---------------------------------
+# dictionary keys for homeheader.html include file
+header:
+  title: "InPe'"
+  tagline: "an open source wearable device that can detect fall and call for emergency"
+  buttons:
+    - text: "View on GitHub"
+      link: "https://github.com/opencarecc/inpe"
+    - text: "Download .zip"
+      link: "https://github.com/opencarecc/inpe/zipball/master"
+    - text: "Coming soon!"
+      link: "https://github.com/opencarecc/inpe/wiki"
+
+# dictionary keys for description.html include file
+description: "some text"
+
+# dictionary keys for video.html include file
+video:
+  title: "video english title"
+  description: "english description"
+  link: "about"
+
+# dictionary keys for topics.html include file
+topics:
+  title: "Project themes"
+  topic_column:
+    - title: "Page 1"
+      description: "topic 1 description"
+      link: "page1"
+      img_url: "assets/flyer.jpg"
+    - title: "Page 2"
+      description: "topic 2 description"
+      link: "page2"
+      img_url: "assets/flyer.jpg"
+
+# dictionary keys for slick_slider.html include file
+slick:
+  description: ""
+  # pics:
+  #   - pic: 'https://farm5.staticflickr.com/4211/34767438573_c6c73445d7_z_d.jpg'
+  #   - pic: 'https://farm5.staticflickr.com/4217/35189199200_654c462308_z_d.jpg'
+  #   - pic: 'https://opencare.github.io/rampette/assets/images/usertest_procedura.jpg'
+  #   - pic: '{{ site.baseurl }}/assets/images/flier.jpg'
+
+# dictionary keys for image_index.html include file
+image_index: "<img src='https://opencarecc.github.io/rehub/assets/RH-home-image.jpg'>"
+
+# dictionary keys for release_notes.html include file
+release_notes:
+  title: "Release 0.1 - 2016/09/12"
+  notes:
+    - note: "Note 1"
+    - note: "Note 2"
+    - note: "Note 3"
+  more_link:
+    - text: "More details"
+      link: "about"
+
+# dictionary keys for news.html include file
+news:
+  latest_news: "Latest news from the blog"
+  link_to_blog: "Read all the news"
+
+# dictionary keys for tutorials.html include file
+tutorials:
+  tutorial_column:
+    - title: "Tutorial 1"
+      description: "This is a brief description of Tutorial 1"
+      link: "http://www.google.com"
+      img_url: "http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg"
+    - title: "Tutorial 2"
+      description: "This is a brief description of Tutorial 2"
+      link: "http://www.google.com"
+      img_url: "http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg"
+    - title: "Tutorial 3"
+      description: "This is a brief description of Tutorial 3"
+      link: "http://www.google.com"
+      img_url: "http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg"
+  more_link:
+    - text: "Check all the tutorials"
+      link: "about"
+
+# dictionary keys for license.html include file
+license:
+  title: "Open Source"
+  license_content_html: "<img src='https://opencarecc.github.io/breathinggames/assets/Open-Source-Initiative-logo.png'>
+  <p><b>reHub</b> is an <b>Open Source</b> project.</p>
+  <p><i>[The licence specifications will follow.]</i></p>"
+
+# dictionary keys for credits.html include file
+credits:
+  title: "Credits"
+  credits_content_html: "This website is maintained by <a href='http://wemake.cc' target='_blank'>WeMake</a> as part of the <a href='http://opencare.cc/' target='_blank'>opencare.cc</a> project.
+                        <br><br>
+                        This project has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement No 688670.
+                        <br><br>
+                        Got questions? Leave a comment below or get in touch <a href='mailto:opencare@wemake.cc?subject=In Pe' info request'>here</a>"
+
+# dictionary keys for contribute.html include file
+contribute:
+  title: "How to contribute"
+  contribution_guidelines:
+    - guideline: "Contribute 1"
+    - guideline: "Contribute 2"
+    - guideline: "Contribute 3"
+  more_link:
+    - text: "Read more"
+      link: "about"
+
+
+# ------------------------------
+# --- FOOTER dictionary keys --- 
+# ------------------------------
+# dictionary keys for footer.html include file
+footer:
+  credits_line_html: "is maintained by <a href='https://opencare.cc'>opencarecc</a>"
+  eu_agreement_line: "This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 688670"
+
+
+# --------------------------------
+# --- CATEGORY dictionary keys --- 
+# --------------------------------
+# dictionary keys for category.html & post.html layout files
+category:
+  title: "Archive for category"
+  year: "Year"
+  category: "filed under"
+
+
+# ----------------------------
+# --- BLOG dictionary keys --- 
+# ----------------------------
+# dictionary keys for blog/index.html file
+# pagination:
+#   next: "Next"
+#   previous: "Previous"
+#   page_1: "Page"
+#   page_2: "of"
+
+  

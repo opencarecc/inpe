@@ -1,0 +1,152 @@
+# Hello, this is the translation file for ITALIAN language
+
+
+# ------------------------------
+# --- GLOBAL dictionary keys --- 
+# ------------------------------
+global:
+  read_more: "Scopri di più"
+  read_more_post: "Leggi tutto"
+
+
+# ---------------------------------
+# --- HOME page dictionary keys --- 
+# ---------------------------------
+# dictionary keys for homeheader.html include file
+header:
+  title: "InPe'"
+  tagline: "un dispositivo wearable che chiama i soccorsi in caso di caduta"
+  buttons:
+    - text: "Vedi su GitHub"
+      link: "https://github.com/opencarecc/inpe"
+    - text: "Scarica .zip"
+      link: "https://github.com/opencarecc/inpe/zipball/master"
+    - text: "Costruisci!"
+      link: "https://github.com/opencarecc/inpe/wiki"
+
+# dictionary keys for description.html include file
+description: "Questa è la descrizione del progetto InPe'"
+
+# dictionary keys for video.html include file
+video:
+  title: "Titolo del video"
+  description: "Descrizone del video"
+  link: "about"
+
+# dictionary keys for topics.html include file
+topics:
+  title: "I temi trattati"
+  topic_column:
+    - title: "Pagina 1"
+      description: "questa è la descrizione del tema 1"
+      link: "it/pagina1"
+      img_url: "assets/flyer.jpg"
+    - title: "Pagina 2"
+      description: "questa è la descrizione del tema 2"
+      link: "it/pagina2"
+      img_url: "assets/flyer.jpg"
+
+# dictionary keys for slick_slider.html include file
+slick:
+  description: ""
+  # pics:
+  #   - pic: 'https://farm5.staticflickr.com/4211/34767438573_c6c73445d7_z_d.jpg'
+  #   - pic: 'https://farm5.staticflickr.com/4217/35189199200_654c462308_z_d.jpg'
+  #   - pic: 'https://opencare.github.io/rampette/assets/images/usertest_procedura.jpg'
+  #   - pic: '{{ site.baseurl }}/assets/images/flier.jpg'
+
+# dictionary keys for image_index.html include file
+image_index: "<img src='https://opencarecc.github.io/rehub/assets/RH-home-image.jpg'>"
+
+# dictionary keys for release_notes.html include file
+release_notes:
+  title: "Release 0.1 - 2016/09/12"
+  notes:
+    - note: "Nota 1"
+    - note: "Nota 2"
+    - note: "Nota 3"
+  more_link:
+    - text: "Maggiori informazioni"
+      link: "about"
+
+# dictionary keys for news.html include file
+news:
+  latest_news: "Ultime news dal blog"
+  link_to_blog: "Tutte le news"
+
+# dictionary keys for tutorials.html include file
+tutorials:
+  tutorial_column:
+    - title: "Tutorial 1"
+      description: "Questa è la descrizione del Turorial 1"
+      link: "http://www.google.com"
+      img_url: "http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg"
+    - title: "Tutorial 2"
+      description: "Questa è la descrizione del Turorial 2"
+      link: "http://www.google.com"
+      img_url: "http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg"
+    - title: "Tutorial 3"
+      description: "Questa è la descrizione del Turorial 3"
+      link: "http://www.google.com"
+      img_url: "http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg"
+  more_link:
+    - text: "Vedi tutti i tutorial"
+      link: "about"
+
+# dictionary keys for license.html include file
+license:
+  title: "Open Source"
+  license_content_html: "Software - <a href='https://www.gnu.org/licenses/gpl-3.0.en.html' target='_blank'>GNU General Public License</a>
+                        <br>
+                        Hardware - <a href='http://ohwr.org/cernohl' target='_blank'>CERN OHL v.1.2</a>"
+
+# dictionary keys for credits.html include file
+credits:
+  title: "Credits"
+  credits_content_html: "Questo sito è curato da <a href='http://wemake.cc' target='_blank'>WeMake</a> ed è parte del progetto <a href='http://opencare.cc/' target='_blank'>opencare.cc</a>.
+                        <br><br>
+                        Questo progetto ha ricevuto fondi dal programma di ricerca e innovazione Horizon 2020 dell'Unione Europea, accordo numero 688670
+                        <br><br>
+                        Vuoi contattarci? Lascia un commento qui sotto o scrivici <a href='mailto:opencare@wemake.cc?subject=open rampette info request'>qui</a>"
+
+# dictionary keys for contribute.html include file
+contribute:
+  title: "Come contribuire al progetto"
+  contribution_guidelines:
+    - guideline: "Contribuire 1"
+    - guideline: "Contribuire 2"
+    - guideline: "Contribuire 3"
+  more_link:
+    - text: "Maggiori informazioni"
+      link: "about"
+
+
+# ------------------------------
+# --- FOOTER dictionary keys --- 
+# ------------------------------
+# dictionary keys for footer.html include file
+footer:
+  credits_line_html: "è curato da <a href='https://opencare.cc'>opencarecc</a>"
+  eu_agreement_line: "This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 688670"
+
+
+# --------------------------------
+# --- CATEGORY dictionary keys --- 
+# --------------------------------
+# dictionary keys for category.html & post.html layout files
+category:
+  title: "Archivio delle news nella categoria"
+  year: "Anno"
+  category: "categoria"
+
+
+# ----------------------------
+# --- BLOG dictionary keys --- 
+# ----------------------------
+# dictionary keys for blog/index.html file
+# pagination:
+#   next: "Seguente"
+#   previous: "Precedente"
+#   page_1: "Pagina"
+#   page_2: "di"
+
