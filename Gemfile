@@ -19,8 +19,9 @@ gem "minima"
 gem "github-pages", group: :jekyll_plugins
 
 # If you have any plugins, put them here!
-# group :jekyll_plugins do
-#   gem "jekyll-github-metadata", "~> 1.0"
+group :jekyll_plugins do
+  # gem "jekyll-github-metadata", "~> 1.0"
   gem "jekyll-sitemap"
-  gem "jekyll-paginate"
-# end
+  # gem "jekyll-paginate"
+  # gem "jekyll-polyglot"
+end
