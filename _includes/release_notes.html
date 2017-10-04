@@ -1,4 +1,24 @@
+<!-- To edit the content of this module please check lang.yml -->
 <div class="column">
+  <!-- title -->
+  <h2>{{ site.data[page.lang].lang["release_notes"]["title"] }}</h2>
+
+  <!-- content -->
+  <ul>
+    {% for item in site.data[page.lang].lang["release_notes"]["notes"] %}
+      <li>{{ item.note }}</li>
+    {% endfor %}
+  </ul>
+
+  <!-- link to more -->
+  <p>
+    {% for item in site.data[page.lang].lang["release_notes"]["more_link"] %}
+      <a href="{{ item.link }}"><em>{{ item.text }} &raquo;</em></a>
+    {% endfor %}
+  </p>
+</div>
+
+<!-- <div class="column">
   <h2>Release 0.1 - 2016/10/14</h2>
   <ul>
     <li>Free fall detection</li>
@@ -13,4 +33,4 @@
       <em>More details »</em>
     </a>
   </p>
-</div>
+</div> -->

@@ -1,13 +1,41 @@
 <div class="column">
-    <h2>Latest news about the project</h2>
-    <ul>
-      {% for post in site.posts offset: 0 limit: 3 %}
-        <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+  <!-- title -->
+  <h2>{{ site.data[page.lang].lang["news"]["latest_news"] }}<em> {{ include.category }}</em></h2>
+
+  <!-- posts -->
+  <div class="row no-border">
+    {% if include.category %} <!-- if a category is specified print the news of the specified category only -->
+      {% for post in site.categories[include.category] offset: 0 limit: 3 %}
+        <div class="column tutorials">
+          <a href="{{ site.baseurl }}{{ post.url }}">
+            <img src="{{ post.image }}">
+          </a>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.subtitle }}... <a href="{{ site.baseurl }}{{ post.url }}"><br><em>{{ site.data[page.lang].lang["global"]["read_more_post"] }} &raquo;</em></a></p>
+        </div>
       {% endfor %}
-    </ul>
-    <p>
-      <a href="{{ site.baseurl }}/blog">
-        <em>See more »</em>
+    {% else %} <!-- if a category is NOT specified print the last posts -->
+      {% assign lang_posts==site.posts | where:"lang", page.lang %}
+      {% for post in lang_posts offset: 0 limit: 3 %}
+        <div class="column tutorials">
+          <a href="{{ site.baseurl }}{{ post.url }}">
+            <img src="{{ post.image }}">
+          </a>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.subtitle }}... <a href="{{ site.baseurl }}{{ post.url }}"><br><em>{{ site.data[page.lang].lang["global"]["read_more_post"] }} &raquo;</em></a></p>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <!-- link to blog index -->
+  <p style="text-align: center;">
+    {% assign blog_pages=site.pages | where:"ref", "blog" %} <!-- this finds all the pages with the "blog" ref -->
+    {% assign blog_page=blog_pages | where:"lang", page.lang %} <!-- this finds the blog page within the current lang -->
+    {% for page in blog_page %}
+      <a href="{{ page.url | prepend: site.baseurl }}">
+        <em>{{ site.data[page.lang].lang["news"]["link_to_blog"] }} &raquo;</em>
       </a>
-    </p>
+    {% endfor %}
+  </p>
 </div>

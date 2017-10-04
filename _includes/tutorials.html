@@ -1,24 +1,19 @@
-<!-- IMPORTANT: Please only change text and links. Leave the HTML structure unchanged -->
+<!-- content -->
+<div class="row no-border">
+  {% for item in site.data[page.lang].lang["tutorials"]["tutorial_column"] %}
+    <div class="column tutorials">
+      <a href="{{ item.link }}">
+        <img src="{{ item.img_url }}">
+      </a>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.description }}</p>
+    </div>
+  {% endfor %}
+</div>
 
-<div class="column tutorials">
-  <a href="http://www.google.com">
-    <img src="http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg">
-  </a>
-  <h3>Tutorial 1</h3>
-  <p>This is a brief description of Tutorial 1</p>
-</div>
-<div class="column tutorials">
-  <a href="http://www.google.com">
-    <img src="http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg">
-  </a>
-  <h3>Tutorial 2</h3>
-  <p>This is a brief description of Tutorial 2</p>
-</div>
-<div class="column tutorials">
-  <a href="http://www.google.com">
-    <img src="http://placekitten.com.s3.amazonaws.com/homepage-samples/408/287.jpg">
-  </a>
-  <h3>Tutorial 3</h3>
-  <p>This is a brief description of Tutorial 3</p>
-</div>
-<span style="width:100%;text-align:center;margin-top:1rem;"><a href=""><em>Check all the tutorials »</em></a></span>
+<!-- link to more -->
+{% for item in site.data[page.lang].lang["tutorials"]["more_link"] %}
+  <p style="text-align: center;">
+    <a href="{{ item.link }}"><em>{{ item.text }} &raquo;</em></a>
+  </p>
+{% endfor %}
