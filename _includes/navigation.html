@@ -1,0 +1,76 @@
+<!-- This finds the current page so it can be highlighted. -->
+{% for entry in site.data[page.lang].navigation %}
+{% capture fullurl %}{{ site.baseurl }}{{ entry.url }}{% endcapture %}
+    {% if fullurl == page.url %}
+        {% assign current_page = fullurl %}
+        {% break %}
+    {% elsif page.url contains fullurl %}
+        {% assign current_page = fullurl %}
+    {% endif %}
+{% endfor %}
+
+<!-- Then we build the nav bar. -->
+<header>
+    <div id="nav-container">    
+        <a href="{{ site.baseurl }}/{{ site.index[page.lang] }}">
+            <img src="{{ site.baseurl }}/assets/OC-Logo-colortext.svg">
+            <!-- {{ site.data[page.lang].lang["project_logo"] }} -->
+            <h1 class="site-name">
+              {{site.name}} <!-- to edit this check _config.yml -->
+            </h1>
+        </a>
+
+        <nav>
+            <!-- hamburger button for mobile view: IMPORTANT DO NOT MOVE-->
+            <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+            <label for="nav-trigger"></label>
+
+            <!-- Language picker stuff: IMPORTANT DO NOT MOVE -->
+            <div id="lang-picker">
+                <input type="checkbox" id="lang-trigger">
+                <label for="lang-trigger">
+                    <li class="dropdown">
+                        <span class="lang">{{ page.lang }}</span>
+                        <span class="lang-icon"><img src="{{ site.baseurl }}/assets/OC-lang.svg"></span>
+                        <ul class="dropdown-content">
+                              {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
+                              {% for post in posts %} <li><a href="{{ post.url | prepend: site.baseurl }}" class="{{ post.lang }}">{{ post.lang }}</a></li> {% endfor %}
+
+                              {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
+                              {% for page in pages %} <li><a href="{{ page.url | prepend: site.baseurl }}" class="{{ page.lang }}">{{ page.lang }}</a></li> {% endfor %}
+                        </ul>
+                    </li>               
+                </label>
+            </div>
+
+            <!-- populate nav menu -->
+            <ul>
+            {% for entry in site.data[page.lang].navigation %}
+                {% if entry.url == current_page %}
+                    {% assign current = 'current' %}
+                {% else %}
+                    <!-- We have to declare it 'null' to ensure it doesn't propagate. -->
+                    {% assign current = null %}
+                {% endif %}
+                {% assign sublinks = entry.sublinks %}
+                {% if sublinks %}
+                    <!-- dropdown trigger for mobile: IMPORTANT DO NOT MOVE -->
+                    <input type="checkbox" id="dropdown-trigger">
+                    <label for="dropdown-trigger">
+                        <li class="dropdown {{ current }}">    
+                            <!-- <a href="{{ site.baseurl }}{{ entry.url }}"> -->{{ entry.title }}<!-- </a> -->
+                            <ul class="dropdown-content">
+                                {% for sublink in sublinks %}
+                                    <li><a href="{{ site.baseurl }}{{ sublink.url }}">{{ sublink.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    </label>
+                {% else %}
+                    <li class="{{ current }}"><a href="{{ site.baseurl }}{{ entry.url }}">{{ entry.title }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</header>
