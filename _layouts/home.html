@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  
+
   {% include head.html %}
 
-  <body>    
-    {% include navbar.html %}
+  <body>
+    <!-- {% include return_to_top_button.html %} -->
+    {% include navigation.html %}
+    {% include homeheader.html %}
 
-	  {% include homeheader.html %}
-
-    <section class="main-content">    
+    <section class="main-content">
       {{ content }}
 
       <!-- Home page comments -->
       <div class="notecomments">
-	<a name="comments"></a>
-        {% include disqus.html %}  
+        {% include disqus.html %}
       </div>
 
-      
-      {% include footer.html %} 
+      {% include footer.html %}
     </section>
 
-    {% include ganalytics.html %}
     {% include jquery.html %}
+    <!-- {% include return_to_top.html %} -->
+    {% include nav_shrink.html %}
     {% include slick.html %}
   </body>
 </html>
+

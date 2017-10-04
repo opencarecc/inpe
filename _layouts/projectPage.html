@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<!-- header -->
+<div class="row">
+  <h1>{{ page.title }} </h1>
+</div>
+<div class="row">
+  <h2>{{ page.subtitle }}</h2>
+  <p class="short-about">
+    {{ page.shortTex }}
+  </p>
+  <p>
+    {% for item in page.buttons %}
+      <a href="{{ item.link }} " class="btn">{{ item.text }} </a>
+    {% endfor %}
+  </p>
+</div>
+
+<!-- gallery and release info -->
+<div class="row">
+  <div class="column">
+    {% include params_slick_slider.html gallery=page.gallery%}
+  </div>
+  <div class="column">
+    <h2>{{ page.release }}</h2>
+    <ul>
+      {% for item in page.features %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    <p>
+      <a href="{{page.github_release_link}}"><em>{{ site.data[page.lang].lang["global"]["read_more"] }} &raquo;</em></a>
+    </p>
+  </div>
+</div>
+
+<!-- page content -->
+<div class="row">
+  {{ content }}
+</div>
+
+<!-- page related news -->
+<div class="row">
+  {% include news.html category=page.newsCategory %}
+</div>
+
+
+<!-- Home page comments -->
+<div class="notecomments">
+  {% include disqus.html %}
+</div>
+
+
+   
