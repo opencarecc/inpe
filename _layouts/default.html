@@ -4,15 +4,17 @@
   {% include head.html %}
   
   <body>
-
-    {% include navbar.html %}
-    
-    <section class="main-content">
-    
-    {{ content }}
-    
-    {% include footer.html %} 
-     
+    <!-- {% include return_to_top_button.html %} -->
+    {% include navigation.html %}
+      
+    <section class="main-content"> 
+      {{ content }}
+      {% include footer.html %}  
     </section>
+
+    {% include jquery.html %}
+    <!-- {% include return_to_top.html %} -->
+    {% include nav_shrink.html %}
+    {% include slick.html %}
   </body>
 </html>

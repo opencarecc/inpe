@@ -1,9 +1,24 @@
-name: inpe
+name: InPe'
+author: WeMake
 markdown: kramdown
-baseurl:
-permalink: /blog/:year/:month/:day/:title/
-gems:
+baseurl: 
+permalink: blog/:year/:month/:day/:title/
+plugins:
   - jekyll-sitemap
-  - jekyll-paginate
-paginate: 10
-paginate_path: /blog/page:num/
+  # - jekyll-paginate
+# paginate: 10
+# paginate_path: /blog/page:num/
+exclude: [README.md]
+github: [metadata]
+
+title: "InPe' by opencarecc"
+tagline: "an open source wearable device that can detect fall and call for emergency"
+
+# multilingual stuff
+index:
+  en:
+  it: it/index.html
+
+default_lang: "en"
+
+

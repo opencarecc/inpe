@@ -1,4 +1,19 @@
 <div class="column video">
-  <div class='embed-container'><iframe src='https://www.youtube.com/embed/z6lobpiFeiU' frameborder='0' allowfullscreen></iframe></div>
-  <p>this is a brief description text for the video content etc etc</p>
+  <!-- video: please only edit video URL -->
+  <div class='embed-container'>
+    <iframe src='https://www.youtube.com/embed/z6lobpiFeiU' frameborder='0' allowfullscreen></iframe>
+  </div>
+
+  <!-- title -->
+  <!-- <h1>{{ site.data[page.lang].lang["video"]["title"] }}</h1> -->
+
+  <!-- description -->
+  <p class="short-about">
+    {{ site.data[page.lang].lang["video"]["description"] }}
+  </p>
+
+  <!-- link to more -->
+  <!-- <p>
+    <a class="more" href="{{ site.data[page.lang].lang['video']['link'] }}"><em>{{ site.data[page.lang].lang["global"]["read_more"] }} &raquo;</em></a>
+  </p> -->
 </div>

@@ -3,8 +3,10 @@ layout: default
 title: About
 published: true
 ref: about
-lang: en
+lang: it
 ---
+
+DA TRADURRE
 
 # About InPe'
 InPe' is a simple device that helps taking care of someone in case they fall down. The device is designed as a wearable that calls the caregiver and sends sms with coordinates, in order for them to come and help the person who fell down.  Inspired by true stories, InPe, serves different needs such as elderly parents living by themselves, or helping a caregiver in a community center. 
@@ -21,24 +23,24 @@ WeMake team is developing InPe' as an open source hardware wearable device that 
 Below you can find different links that will help you tracking the process InPe’ has originated from.
 
 - MARCH - APRIL 2016_Together with Municipality of Milan, WeMake met different communities of milanese citizens, to talk about opencare:
-	- Elderly people ([ITA](http://wemake.cc/2016/03/10/opencare-e-balera-al-circolo-olmi-a-milano/) - [ENG](https://edgeryders.eu/en/opencare-research/meetings-with-milanese-community-march-12th-2016))
-	- Foreigners ([ITA](http://wemake.cc/2016/03/14/opencare-incontra-i-giovani-stranieri-di-villa-pallavicini/) - [ENG](https://edgeryders.eu/en/opencare-research/opencare-outreach-events-meeting-with-migrant))
-	- Disabled people and caregivers ([ITA](http://wemake.cc/2016/03/29/opencare-si-presenta-alle-famiglie-con-diverse-abilita/) - [ENG](https://edgeryders.eu/en/opencare-research/opencare-outreach-events-meeting-with-families-with))
-	- Makers ([ITA](http://wemake.cc/2016/03/30/opencare-al-genuino-day/) - [ENG](https://edgeryders.eu/en/opencare-research/opencare-medicina-e-cura-opensource-alessandro))
-	- Active citizens ([ITA](http://wemake.cc/2016/04/18/opencare-nella-social-street-di-via-san-gottardo/))
+  - Elderly people ([ITA](http://wemake.cc/2016/03/10/opencare-e-balera-al-circolo-olmi-a-milano/) - [ENG](https://edgeryders.eu/en/opencare-research/meetings-with-milanese-community-march-12th-2016))
+  - Foreigners ([ITA](http://wemake.cc/2016/03/14/opencare-incontra-i-giovani-stranieri-di-villa-pallavicini/) - [ENG](https://edgeryders.eu/en/opencare-research/opencare-outreach-events-meeting-with-migrant))
+  - Disabled people and caregivers ([ITA](http://wemake.cc/2016/03/29/opencare-si-presenta-alle-famiglie-con-diverse-abilita/) - [ENG](https://edgeryders.eu/en/opencare-research/opencare-outreach-events-meeting-with-families-with))
+  - Makers ([ITA](http://wemake.cc/2016/03/30/opencare-al-genuino-day/) - [ENG](https://edgeryders.eu/en/opencare-research/opencare-medicina-e-cura-opensource-alessandro))
+  - Active citizens ([ITA](http://wemake.cc/2016/04/18/opencare-nella-social-street-di-via-san-gottardo/))
 - MARCH - APRIL 2016_Simultaneously we also organized some workshops to introduce digital technologies applied to care topics:
-	- Fa’ la cosa giusta ([ITA](http://wemake.cc/2016/03/15/opencare-a-fa-la-cosa-giusta/) - [ENG](https://edgeryders.eu/en/opencare-research/prendersi-cura-con-strumenti-open-source-workshop))
-	- Forum delle politiche sociali ([ITA](http://wemake.cc/2016/04/05/opencare-al-forum-delle-politiche-sociali-workshop/) - [ENG](https://edgeryders.eu/en/opencare-research/localactivity-prendersi-cura-con-strumenti-open))
+  - Fa’ la cosa giusta ([ITA](http://wemake.cc/2016/03/15/opencare-a-fa-la-cosa-giusta/) - [ENG](https://edgeryders.eu/en/opencare-research/prendersi-cura-con-strumenti-open-source-workshop))
+  - Forum delle politiche sociali ([ITA](http://wemake.cc/2016/04/05/opencare-al-forum-delle-politiche-sociali-workshop/) - [ENG](https://edgeryders.eu/en/opencare-research/localactivity-prendersi-cura-con-strumenti-open))
 - MAY 2016_During this month WeMake and the Municipality of Milan organized three co-design sessions:
-	-First session ([ENG](https://edgeryders.eu/en/opencare-research/report-local-activity-co-design))
-	- Second session ([ENG](https://edgeryders.eu/en/opencare-research/report-local-activity-co-design-second-session))
-	- Third session ([ITA](http://wemake.cc/2016/05/30/annunciamo-il-primo-prototipo-di-opencare/) - [ENG](https://edgeryders.eu/en/opencare-research/report-local-activity-co-design-3))
+  -First session ([ENG](https://edgeryders.eu/en/opencare-research/report-local-activity-co-design))
+  - Second session ([ENG](https://edgeryders.eu/en/opencare-research/report-local-activity-co-design-second-session))
+  - Third session ([ITA](http://wemake.cc/2016/05/30/annunciamo-il-primo-prototipo-di-opencare/) - [ENG](https://edgeryders.eu/en/opencare-research/report-local-activity-co-design-3))
 Give a look to the projects designed by milanese citizens: [In Pe’](https://edgeryders.eu/en/in-p), [Fatti più in là](https://edgeryders.eu/en/fatti-pi-in-l-or-step-aside), [Step up](https://edgeryders.eu/en/step-up).
 - JUNE 2016 - ONGOING_After selecting In Pe’ for the prototyping phase we started developing it:
-	- Preliminary development plan ([ENG](https://edgeryders.eu/en/opencare-research/prototype01-preliminary-development-plan))
-	- Hardware update ([ITA](http://wemake.cc/2016/07/25/aggiornamenti-da-in-pe-primo-prototipo-opencare/))
-	- Testing update ([ITA](http://wemake.cc/2016/10/06/novita-da-in-pe-il-braccialetto-che-allerta-in-caso-di-caduta/))
-	- Website update ([ITA](http://wemake.cc/2016/10/19/e-online-il-sito-del-primo-prototipo-di-opencare-in-pe/) - ENG)
+  - Preliminary development plan ([ENG](https://edgeryders.eu/en/opencare-research/prototype01-preliminary-development-plan))
+  - Hardware update ([ITA](http://wemake.cc/2016/07/25/aggiornamenti-da-in-pe-primo-prototipo-opencare/))
+  - Testing update ([ITA](http://wemake.cc/2016/10/06/novita-da-in-pe-il-braccialetto-che-allerta-in-caso-di-caduta/))
+  - Website update ([ITA](http://wemake.cc/2016/10/19/e-online-il-sito-del-primo-prototipo-di-opencare-in-pe/) - ENG)
 
 
 
@@ -120,7 +122,7 @@ Please follow full documentation on our [github repo](https://github.com/opencar
 - How can I learn more about upcoming activities
 WeMake coordinates different communication channels related to **opencare** project, you can choose the ones that mostly satisfy your thirst for knowledge:
 
-	- [NEWSLETTER](http://tinyletter.com/WeMakeOpenCare) (ITA): to receive invitations to events, information and weekly updates about the European project and the prototype itself;
-	- [WORKSPACE](http://edgeryders.eu/en/opencare-research) (ENG): in order to communicate directly with opencare partners on Edgeryders’ platform;
-	- [BLOG](http://wemake.cc/category/opencare/) (ITA): to have access to opencare’s personal journal and report, with in-depth information about past and future events, case studies and more.
-	- [LANDING PAGE](http://wemake.cc/opencare/) (ITA - ENG coming soon): to be informed about what has been done so far and to have a complete overview of WeMake’s involvement within the project.
+  - [NEWSLETTER](http://tinyletter.com/WeMakeOpenCare) (ITA): to receive invitations to events, information and weekly updates about the European project and the prototype itself;
+  - [WORKSPACE](http://edgeryders.eu/en/opencare-research) (ENG): in order to communicate directly with opencare partners on Edgeryders’ platform;
+  - [BLOG](http://wemake.cc/category/opencare/) (ITA): to have access to opencare’s personal journal and report, with in-depth information about past and future events, case studies and more.
+  - [LANDING PAGE](http://wemake.cc/opencare/) (ITA - ENG coming soon): to be informed about what has been done so far and to have a complete overview of WeMake’s involvement within the project.
