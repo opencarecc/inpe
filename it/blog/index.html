@@ -15,11 +15,11 @@ lang: it
   {% assign posts=site.posts | where:"lang", page.lang %}
   {% for post in posts %}
     <li>
-      <a href="{{ post.url }}" title="{{ post.title }}"><h2>{{ post.title }}</span></h2></a>
+      <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}"><h2>{{ post.title }}</span></h2></a>
       <p class="postdate">{{ post.date | date_to_string }}</p>
       <img src="{{ post.image }}">
       {{ post.excerpt }}
-      <a href="{{ post.url }}" title="{{ post.title }}"><em>{{ site.data[page.lang].lang["global"]["read_more_post"] }} &raquo;</em></a>
+      <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}"><em>{{ site.data[page.lang].lang["global"]["read_more_post"] }} &raquo;</em></a>
     </li>
   {% endfor %}
 </ul>
