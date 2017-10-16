@@ -2,7 +2,7 @@
 
 
 # ------------------------------
-# --- GLOBAL dictionary keys --- 
+# --- GLOBAL dictionary keys ---
 # ------------------------------
 global:
   read_more: "Scopri di più"
@@ -10,7 +10,7 @@ global:
 
 
 # ---------------------------------
-# --- HOME page dictionary keys --- 
+# --- HOME page dictionary keys ---
 # ---------------------------------
 # dictionary keys for homeheader.html include file
 header:
@@ -30,6 +30,7 @@ description: "Questa è la descrizione del progetto InPe'"
 # dictionary keys for video.html include file
 video:
   title: "Titolo del video"
+  url: "https://www.youtube.com/embed/z6lobpiFeiU"
   description: "Descrizone del video"
   link: "about"
 
@@ -122,7 +123,7 @@ contribute:
 
 
 # ------------------------------
-# --- FOOTER dictionary keys --- 
+# --- FOOTER dictionary keys ---
 # ------------------------------
 # dictionary keys for footer.html include file
 footer:
@@ -131,7 +132,7 @@ footer:
 
 
 # --------------------------------
-# --- CATEGORY dictionary keys --- 
+# --- CATEGORY dictionary keys ---
 # --------------------------------
 # dictionary keys for category.html & post.html layout files
 category:
@@ -141,7 +142,7 @@ category:
 
 
 # ----------------------------
-# --- BLOG dictionary keys --- 
+# --- BLOG dictionary keys ---
 # ----------------------------
 # dictionary keys for blog/index.html file
 # pagination:
@@ -149,4 +150,3 @@ category:
 #   previous: "Precedente"
 #   page_1: "Pagina"
 #   page_2: "di"
-
