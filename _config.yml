@@ -1,7 +1,7 @@
 name: InPe'
 author: WeMake
 markdown: kramdown
-baseurl: 
+baseurl:
 permalink: blog/:year/:month/:day/:title/
 plugins:
   - jekyll-sitemap
@@ -21,4 +21,18 @@ index:
 
 default_lang: "en"
 
+# Facebook OpenGraph stuff
+opengraph:
+  title: "InPe' by opencarecc"
+  url: "http://inpe.opencare.cc"
+  description: "an open source wearable device that can detect fall and call for emergency"
+  image_url: "http://opencarecc.github.io/inpe/assets/OC-Logo-socials.png"
 
+# Twitter Card stuff
+twitter:
+  site: "InPe' by opencarecc"
+  title: "InPe' by opencarecc"
+  description: "an open source wearable device that can detect fall and call for emergency"
+  creator: "opencarecc"
+  domain: "http://inpe.opencare.cc"
+  image_url: "http://opencarecc.github.io/inpe/assets/OC-Logo-socials.png"

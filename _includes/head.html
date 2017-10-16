@@ -1,6 +1,6 @@
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }} &middot; {{ site.title }}</title>  
+  <title>{{ page.title }} &middot; {{ site.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/stylesheets/normalize.css" media="screen">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
@@ -15,4 +15,20 @@
   <!-- SLICK SLIDER -->
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/slick/slick-theme.css"/>
+
+  <!-- Facebook OpenGraph stuff -->
+	<meta property="og:title" content="{{ site.opengraph["title"] }}" />
+	<meta property="og:url" content="{{ site.opengraph["url"] }}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:description" content="{{ site.opengraph["description"] }}" />
+	<meta property="og:image" content="{{ site.opengraph["image_url"] }}" />
+
+	<!-- Twitter Card stuff -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="{{ site.twitter["site"] }}">
+	<meta name="twitter:title" content="{{ site.twitter["title"] }}">
+	<meta name="twitter:description" content="{{ site.twitter["description"] }}">
+	<meta name="twitter:creator" content="{{ site.twitter["creator"] }}">
+	<meta name="twitter:domain" content="{{ site.twitter["domain"] }}">
+	<meta name="twitter:image:src" content="{{ site.twitter["image_url"] }}">
 </head>
