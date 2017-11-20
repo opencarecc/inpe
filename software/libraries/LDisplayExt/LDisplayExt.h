@@ -143,7 +143,7 @@ private:
   
 };
 
-extern LDisplayExtClass Lcd;
+extern LDisplayExtClass LcdExt;
 
 
 #endif

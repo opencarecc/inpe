@@ -167,4 +167,4 @@ void LDisplayExtClass::draw_updata(void)
   remoteCall(lcd_ext_draw_updata, NULL);
 }
 
-LDisplayExtClass Lcd;
+LDisplayExtClass LcdExt;
