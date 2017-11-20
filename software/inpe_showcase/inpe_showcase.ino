@@ -11,20 +11,20 @@
   - Xadow GPS
   - Xadow Basic Sensors
   - Lipo battery 3.7v 520mAh
+  - MicroSIM card
   
-  TO DO:
-  - move fall trigger to somewhere more visible
-  - add sleep library
-  - add check to SMS function to only write the position when GPS available
-  - add option to sync time with GPS time when available
-  - better UI (LDisplayExt)
+  !! ATTENTION !!
+  To run this sketch extra libraries are required.
+  - Please find them at https://github.com/opencarecc/inpe/tree/master/software/libraries
+  Before uploading the sketch, please:
+  - enter your phone number
+  - enter date and time
   
   Alessandro Contini @ WeMake for http://opencare.cc/
   2017
 */
 
-
-#include <LDisplay.h>
+#include "LDisplayExt.h"
 #include <LSensorHub.h>
 #include <LAudio.h>
 #include <LGTouch.h>
@@ -114,12 +114,7 @@ int yInit = 0;
 int xFinal = 240;
 int yFinal = 240;
 
-// create a function to draw a rectangle using inputs:
-//    - X and Y coordinates for positioning of the first pixel
-//    - width and height for rectangle size
-void draw_rect(int x, int y, int width, int height, uint32_t color) {
-  Lcd.draw_fill_rectangle(x, y, (x + width), (y + height), color);
-}
+
 
 /* TEST MODE - FILE LOG STUFF */
 // set a delay time to avoid flooding the log
@@ -155,10 +150,10 @@ void setup()
   Tp.Init();
 
   // initialize LCD
-  Lcd.init();
-  Lcd.font_init();
-  Lcd.back_light_level(100);
-  Lcd.screen_set(0x000000);
+  LcdExt.init();
+  LcdExt.font_init();
+  LcdExt.back_light_level(100);
+  LcdExt.screen_set(0x000000);
 
   // initialize Date and Time
   time_init();
@@ -182,7 +177,7 @@ void loop()
   // build home screen
   homeScreen();
   
-  Lcd.draw_updata();  // update screen 
+  LcdExt.draw_updata();  // update screen 
 }
 
 
@@ -297,27 +292,37 @@ void homeScreen(){
   Serial.println("Into Home Screen");
   
   // flush content by creating a new background
-  draw_rect(0,30,240,210,0x000000);
+//  draw_rect(0,30,240,210,0x000000);
+  LcdExt.draw_fill_rectangle(0,30,240,210,0x000000,0x000000);
   
   while(systemFlag==false && fallFlag==false){
     Serial.println("Into Home Screen While");
+    
     createHeader();
     displayDate();
-    displayTime(); 
+    displayTime();
     
-    Lcd.draw_font(87, 125, "InPe is", 0, 0xffffff, 20);
+    LcdExt.draw_font(87, 125, "InPe is", 0, 0xffffff, 20);
     if(checkSystem()==true){
       // font color green
-      draw_rect(50,130,150,40,0x000000);
-      Lcd.draw_font(89, 150, systemCheck, 0, 0x00ff00, 20);
+//      draw_rect(50,150,147,40,0x000000);
+      LcdExt.draw_fill_rectangle(50,150,147,40,0x000000,0x000000);
+      LcdExt.draw_font(82, 150, systemCheck, 0, 0x00ff00, 20);
     } else {
       // font color red
-      draw_rect(50,150,147,40,0x000000);
-      Lcd.draw_font(85, 150, systemCheck, 0, 0xff0000, 20);
-      Lcd.draw_font(50, 170, "Check System >", 0, 0xff0000, 20);
+//      draw_rect(50,150,147,40,0x000000);
+      LcdExt.draw_fill_rectangle(46,150,152,50,0x000000,0x000000);
+      LcdExt.draw_font(85, 150, systemCheck, 0, 0xff0000, 20);
+
+      LcdExt.draw_fill_rectangle(46,173,150,25,0xff0000,0xff0000);
+      LcdExt.draw_font(50, 177, "Check System", 0xff0000, 0x000000, 20);
+      LcdExt.draw_fill_triangle(185,181,190,186,185,191,0x000000,0x000000);
     }
+
+    displayAlarmTrigger();
     
     if (Tp.Event_available()) {
+      lsleep.sleep();   // we also need to call the sleep function here otherwise it will not wake up
       Tp.Get_event_xy(&EVENT, &X, &Y);
       triggerCheckScreen();    
       if(triggerFall()==true){
@@ -328,34 +333,41 @@ void homeScreen(){
     }
 //    testMode();
 
-    Lcd.draw_updata();
+    // call sleep function
+    lsleep.sleep();
+
+    LcdExt.draw_updata();
   }   
 }
 
 /* ==== UI HEADER ==== */
 void createHeader(){
-  draw_rect(0, 0, 240, 30, 0xffffff);
+//  draw_rect(0, 0, 240, 30, 0xffffff);
+  LcdExt.draw_fill_rectangle(0, 0, 240, 30, 0xffffff, 0xffffff);
   batteryLevel();
 }
 void displayDate(){
   LDateTime.getTime(&t);
   sprintf(date, "%02u-%02u-%02u", t.year, t.mon, t.day);
-  Lcd.draw_font(8, 8, date, 0xffffff, 0x000000, 18);
+  LcdExt.draw_font(8, 8, date, 0xffffff, 0x000000, 18);
 }
 void displayTime(){
   LDateTime.getTime(&t);
   sprintf(time, "%02u:%02u", t.hour, t.min);
-  Lcd.draw_font(55, 65, time, 0, 0xffffff, 50);
-  sprintf(time, ":%02u", t.sec);
-  Lcd.draw_font(182, 85, time, 0, 0xffffff, 18);
+  LcdExt.draw_font(55, 65, time, 0, 0xffffff, 50);
+  sprintf(time, "%02u", t.sec);
+  LcdExt.draw_font(182, 65, time, 0, 0xffffff, 18);
 }
 
 /* ==== BATTERY ==== */
 void batteryLevel(){
   // draw battery icon
-  draw_rect((xFinal)-48,5,35,20,0x000000);
-  draw_rect((xFinal)-13,8,4,14,0x000000);
-  draw_rect((xFinal)-45,8,29,14,0xffffff);
+//  draw_rect((xFinal)-48,5,35,20,0x000000);
+//  draw_rect((xFinal)-13,8,4,14,0x000000);
+//  draw_rect((xFinal)-45,8,29,14,0xffffff);
+  LcdExt.draw_fill_rectangle((xFinal)-48,5,35,20,0x000000,0x000000);
+  LcdExt.draw_fill_rectangle((xFinal)-13,8,4,14,0x000000,0x000000);
+  LcdExt.draw_fill_rectangle((xFinal)-45,8,29,14,0xffffff,0xffffff);
     
   // check if battery is charging
   if(LBattery.isCharging()){
@@ -366,28 +378,32 @@ void batteryLevel(){
     for(unsigned char x=0;x<20;x++){
       k=k-0.7;
       for(float y=0;y<k;y++){
-        Lcd.draw_point(x+(xFinal-32),y+14,0x000000);
+        LcdExt.draw_point(x+(xFinal-32),y+14,0x000000);
       }
     }
     for(unsigned char x=0;x<20;x++){
       h=h-0.7;
       for(float y=12;y>h;y--){
-        Lcd.draw_point(x+(xFinal-49),y+2,0x000000);
+        LcdExt.draw_point(x+(xFinal-49),y+2,0x000000);
       }
     }
   } else {
     // fill battery icon from L to R according to battery level
     if (LBattery.level()==0){
-        draw_rect((xFinal)-43,10,3,10,0xff0000);
+//      draw_rect((xFinal)-43,10,3,10,0xff0000);
+      LcdExt.draw_fill_rectangle((xFinal)-43,10,3,10,0xff0000,0xff0000);
     }
     if (LBattery.level()==33){
-      draw_rect((xFinal)-43,10,10,10,0xff0000);
+//      draw_rect((xFinal)-43,10,10,10,0xff0000);
+      LcdExt.draw_fill_rectangle((xFinal)-43,10,10,10,0xff0000,0xff0000);
     }
     if (LBattery.level()==66){
-      draw_rect((xFinal)-43,10,18,10,0x000000);
+//      draw_rect((xFinal)-43,10,18,10,0x000000);
+      LcdExt.draw_fill_rectangle((xFinal)-43,10,18,10,0x000000,0x000000);
     }
     if (LBattery.level()==100){
-      draw_rect((xFinal)-43,10,25,10,0x000000);
+//      draw_rect((xFinal)-43,10,25,10,0x000000);
+      LcdExt.draw_fill_rectangle((xFinal)-43,10,25,10,0x000000,0x000000);
     }
   }
 }
@@ -398,7 +414,7 @@ void batteryLevel(){
 //////////////////////////////////////////////////////////
 /* ==== TRIGGER TO SYSTEM CHECK SCREEN ==== */
 void triggerCheckScreen(){
-  if (EVENT>0 && EVENT!=2 && X>=40 && X<=210 && Y>=140 && Y<=180) {
+  if (EVENT>0 && EVENT!=2 && X>=40 && X<=210 && Y>=140 && Y<=210) {
     systemFlag = true;
     systemCheckScreen();     
   }
@@ -407,7 +423,8 @@ void triggerCheckScreen(){
 /* ==== SYSTEM CHECK SCREEN ==== */
 void systemCheckScreen() {  
   // flush content
-  draw_rect(0,30,240,210,0x000000);
+//  draw_rect(0,30,240,210,0x000000);
+  LcdExt.draw_fill_rectangle(0,30,240,210,0x000000,0x000000);
 
   while(systemFlag == 1){
     Serial.println("Into System Check Screen While");
@@ -423,8 +440,10 @@ void systemCheckScreen() {
     displayGPSData();
     displaySIM();
     
-    draw_rect((xFinal)-87, 205, 87, 40, 0xffffff);
-    Lcd.draw_font((xFinal)-78, 215, "< Back", 0xffffff, 0x000000, 20);
+//    draw_rect((xFinal)-87, 205, 87, 40, 0xffffff);
+    LcdExt.draw_fill_rectangle(163, 207, 77, 33, 0xffffff, 0xffffff);
+    LcdExt.draw_font(184, 215, "Back", 0xffffff, 0x000000, 20);
+    LcdExt.draw_fill_triangle(172,223,177,218,177,228,0x000000,0x000000);
     
     // if a touch event is detected
     if (Tp.Event_available()) {
@@ -434,84 +453,84 @@ void systemCheckScreen() {
         homeScreen();     
       }
     }
-    Lcd.draw_updata();
+    LcdExt.draw_updata();
   }
 }
 
 /* ==== DISPLAY SIM DATA ==== */
 void displaySIM(){
-  Lcd.draw_font(10, 180, "SIM Status:", 0, 0xffffff, 20);
+  LcdExt.draw_font(10, 180, "SIM Status:", 0, 0xffffff, 20);
   if(LCheckSIM.isCheck()){
-    Lcd.draw_font(120, 180, SIMStatus, 0, 0xffffff, 20);
+    LcdExt.draw_font(120, 180, SIMStatus, 0, 0xffffff, 20);
   } else {
-    Lcd.draw_font(120, 180, SIMStatus, 0, 0xff0000, 20);
+    LcdExt.draw_font(120, 180, SIMStatus, 0, 0xff0000, 20);
   }
 }
 
 /* ==== DISPLAY GPS DATA ==== */
 void displayGPSData() {
-  Lcd.draw_font(10, 110, "GPS:", 0, 0xffffff, 20);
+  LcdExt.draw_font(10, 110, "GPS:", 0, 0xffffff, 20);
   if (LGPS.check_online()){
     // if GPS is connected display GPSState in white
-    Lcd.draw_font(60, 110, GPSState, 0, 0xffffff, 20);
+    LcdExt.draw_font(60, 110, GPSState, 0, 0xffffff, 20);
   } else {
-    Lcd.draw_font(60, 110, GPSState, 0, 0xff0000, 20);
+    LcdExt.draw_font(60, 110, GPSState, 0, 0xff0000, 20);
   }  
   char GPSDataBuffer[50] = {0,};
   sprintf(GPSDataBuffer, "Status: %c\r\n", LGPS.get_status());
-  Lcd.draw_font(120, 110, GPSDataBuffer, 0, 0xffffff, 20);
+  LcdExt.draw_font(120, 110, GPSDataBuffer, 0, 0xffffff, 20);
   sprintf(GPSDataBuffer, "Lat %c:%f\r\n", LGPS.get_ns(), LGPS.get_latitude());
-  Lcd.draw_font(10, 130, GPSDataBuffer, 0, 0xffffff, 20);
+  LcdExt.draw_font(10, 130, GPSDataBuffer, 0, 0xffffff, 20);
   sprintf(GPSDataBuffer, "Long %c:%f\r\n", LGPS.get_ew(), LGPS.get_longitude());
-  Lcd.draw_font(10, 150, GPSDataBuffer, 0, 0xffffff, 20);
+  LcdExt.draw_font(10, 150, GPSDataBuffer, 0, 0xffffff, 20);
 }
 
 /* ==== DISPLAY SENSOR HUB VALUES ==== */
  void displaySensorHubValues() {
     // get data from sensors
     LSensorHub.GetAccData(&accData1, &accData2, &accData3);
-    Lcd.draw_font(10, 40, "Accelerometer:", 0, 0xffffff, 20);
+    LcdExt.draw_font(10, 40, "Accelerometer:", 0, 0xffffff, 20);
     if(checkSensorHub()){
       // if SensorHub is connected display sensorHubStatus in white
-      Lcd.draw_font(150, 40, sensorHubStatus, 0, 0xffffff, 20);
+      LcdExt.draw_font(150, 40, sensorHubStatus, 0, 0xffffff, 20);
     } else {
       // if SensorHub is connected display sensorHubStatus in red
-      Lcd.draw_font(150, 40, sensorHubStatus, 0, 0xff0000, 20);
+      LcdExt.draw_font(150, 40, sensorHubStatus, 0, 0xff0000, 20);
     }
 /* print Acc X value to LCD */
-    Lcd.draw_font(10, 60, "X:", 0, 0xffffff, 20);
+    LcdExt.draw_font(10, 60, "X:", 0, 0xffffff, 20);
     if(accData1 > 0){
-        Lcd.draw_font(10, 80, "+", 0, 0xffffff, 20);
-        Lcd.draw_number(20, 80, accData1, 0, 0xffffff, 20);
+        LcdExt.draw_font(10, 80, "+", 0, 0xffffff, 20);
+        LcdExt.draw_number(20, 80, accData1, 0, 0xffffff, 20);
     } else {
         accData1 ^= 0xffffffff;
         accData1 += 1;
-        Lcd.draw_font(10, 80, "-", 0, 0xffffff, 20);
-        Lcd.draw_number(20, 80, accData1, 0, 0xffffff, 20);
+        LcdExt.draw_font(10, 80, "-", 0, 0xffffff, 20);
+        LcdExt.draw_number(20, 80, accData1, 0, 0xffffff, 20);
     }
 
 /* print Acc Y value to LCD */
-    Lcd.draw_font((xFinal/2)-20, 60, "Y:", 0, 0xffffff, 20);
+    LcdExt.draw_font((xFinal/2)-20, 60, "Y:", 0, 0xffffff, 20);
     if(accData2 > 0){
-        Lcd.draw_font((xFinal/2)-20, 80, "+", 0, 0xffffff, 20);
-        Lcd.draw_number((xFinal/2)-10, 80, accData2, 0, 0xffffff, 20);
+        LcdExt.draw_font((xFinal/2)-20, 80, "+", 0, 0xffffff, 20);
+        LcdExt.draw_number((xFinal/2)-10, 80, accData2, 0, 0xffffff, 20);
     } else {
         accData2 ^= 0xffffffff;
         accData2 += 1;
-        Lcd.draw_font((xFinal/2)-20, 80, "-", 0, 0xffffff, 20);
-        Lcd.draw_number((xFinal/2)-10, 80, accData2, 0, 0xffffff, 20);
+        LcdExt.draw_font((xFinal/2)-20, 80, "-", 0, 0xffffff, 20);
+        LcdExt.draw_number((xFinal/2)-10, 80, accData2, 0, 0xffffff, 20);
     }
 
 /* print Acc Z value to LCD */
-    Lcd.draw_font((xFinal)-50, 60, "Z:", 0, 0xffffff, 20);
+    LcdExt.draw_font((xFinal)-50, 60, "Z:", 0, 0xffffff, 20);
     if(accData3 > 0){
-        Lcd.draw_font((xFinal)-50, 80, "+", 0, 0xffffff, 20);
-        Lcd.draw_number((xFinal)-40, 80, accData3, 0, 0xffffff, 20);
+        LcdExt.draw_font((xFinal)-50, 80, "+", 0, 0xffffff, 20);
+        LcdExt.draw_number((xFinal)-40, 80, accData3, 0, 0xffffff, 20);
     } else {
         accData3 ^= 0xffffffff;
         accData3 += 1;
-        Lcd.draw_font((xFinal)-50, 80, "-", 0, 0xffffff, 20);
-        Lcd.draw_number((xFinal)-40, 80, accData3, 0, 0xffffff, 20);
+        LcdExt.draw_font((xFinal)-50, 80, "-", 0, 0xffffff, 20);
+        LcdExt.draw_number((xFinal)-40, 80, accData3, 0, 0xffffff, 20);
     }
 }
 
@@ -520,8 +539,14 @@ void displayGPSData() {
 ///////////////////////   ALARM   ////////////////////////
 //////////////////////////////////////////////////////////
 /* ==== FALL TRIGGER ==== */
+void displayAlarmTrigger() {
+//  draw_rect(220,220,20,20,0xff0000);
+  LcdExt.draw_fill_ellipse(220,220,15,15,0x202020,0x202020);
+}
+
 boolean triggerFall() {
-  if (EVENT>0 && EVENT!=2 && X>=0 && X<=240 && Y>=0 && Y<=40) {   
+//  if (EVENT>0 && EVENT!=2 && X>=0 && X<=240 && Y>=0 && Y<=40) {
+if (EVENT>0 && EVENT!=2 && X>=210 && X<=240 && Y>=210 && Y<=240) {   
 //      sprintf(detected, "DETECTED!\r\non %d-%d-%d %d:%d:%d\r\nat LAT %c:%f LONG %c:%f\r\n", utc_date_time[0], utc_date_time[1], utc_date_time[2], utc_date_time[3], utc_date_time[4], utc_date_time[5], LGPS.get_ns(), LGPS.get_latitude(), LGPS.get_ew(), LGPS.get_longitude());
 //      LFile.Write(fileName, detected);
     return true; 
@@ -535,17 +560,18 @@ void doTheAlarm() {
   Serial.println("Into Alarm");
 
   // switch screen color
-  draw_rect(0,0,240,240,0xff007f);
+//  draw_rect(0,0,240,240,0xff007f);
+  LcdExt.draw_fill_rectangle(0,0,240,240,0xff007f,0xff007f);
   
   while(fallFlag==true){
   Serial.println("Into Alarm While");
   
   // display triggered text
-  Lcd.draw_font(40, 40, "FALL DETECTED!", 0xff007f, 0, 20);
+  LcdExt.draw_font(15, 40, "FALL DETECTED!", 0xff007f, 0, 26);
   //  Lcd.draw_font(80, 80, "Calling", 0xff007f, 0);
   //  Lcd.draw_font(50, 80, SMSsentFeedback, 0xff007f, 0);
-  Lcd.draw_font(50, 80, "  SMS sent to:", 0xff007f, 0, 20);
-  Lcd.draw_font(40, 100, phoneNumber, 0xff007f, 0, 20);
+  LcdExt.draw_font(50, 100, "  SMS sent to:", 0xff007f, 0, 20);
+  LcdExt.draw_font(40, 120, phoneNumber, 0xff007f, 0, 20);
   
   // play audio file
   Serial.println("Play the audio");
@@ -554,7 +580,7 @@ void doTheAlarm() {
 
   delay(1000);
   
-  // if not into STATUS MODE
+  // if not into TEST MODE
 //  if (testFlag==0){
 //    Lcd.draw_font(60, 200, "touch to stop", 0xff007f, 0, 20);
 //  }
@@ -566,7 +592,8 @@ void doTheAlarm() {
 //    Lcd.draw_font((xFinal/2)+35, 190, "NO", 0x000000, 0xff007f, 20);
 //  }
 
-  Lcd.draw_font(60, 200, "touch to stop", 0xff007f, 0, 20);
+  LcdExt.draw_fill_rectangle(53,196,129,26,0x000000,0x000000);
+  LcdExt.draw_font(60, 200, "touch to stop", 0, 0xff007f, 20);
 
   doSMS();
 
@@ -609,7 +636,7 @@ void doTheAlarm() {
 //    }
   }
 
-Lcd.draw_updata();
+LcdExt.draw_updata();
   }
 }
 
