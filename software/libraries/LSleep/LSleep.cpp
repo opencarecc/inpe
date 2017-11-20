@@ -1,4 +1,5 @@
-#include "LDisplay.h"
+// #include "LDisplay.h" // this library can be used with the regular LDisplay library, just be sure to use the Lcd prefix (eg. LcdExt.back_light_level(0);)
+#include "LDisplayExt.h"
 #include "LGTouch.h"
 #include "LSleep.h"
 #include "Sleep.h"
