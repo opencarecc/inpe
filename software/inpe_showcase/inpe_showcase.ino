@@ -594,8 +594,16 @@ Lcd.draw_updata();
 void doSMS() {
   if(smsSent == false){
     char SMScontent[159] = {0,};
-//    sprintf(SMScontent, "HELP! I fell here http://maps.google.com/maps?q=%f,%f", LGPS.get_latitude(), LGPS.get_longitude());
-    sprintf(SMScontent, "HELP! I fell here");
+
+    if (checkGPS() == true){
+      sprintf(SMScontent, "HELP! I fell here http://maps.google.com/maps?q=%f,%f", LGPS.get_latitude(), LGPS.get_longitude());
+      Serial.print("SMS content: ");
+      Serial.println(SMScontent);
+    } else {    
+      sprintf(SMScontent, "HELP! I have fallen");
+      Serial.print("SMS content: ");
+      Serial.println(SMScontent);
+    }
   
     Serial.println("Sending SMS:");
 //    while(!LSMS.ready()){}
