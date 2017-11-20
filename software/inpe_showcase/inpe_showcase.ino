@@ -33,26 +33,43 @@
 #include <LCheckSIM.h>
 #include <LGSM.h>
 #include <LBattery.h>
-#include <LCFile.h>
+//#include <LCFile.h>
 #include <LDateTime.h>
+#include "LSleep.h"
 
 // initialize variables for GSM
-char *phoneNumber = "00393402686996";
+char *phoneNumber = "enter-phone-number";
 
 // initialize variables for Date and Time
-datetimeInfo t;
 // set time
-void time_init()
-{
-    t.year  = 2017;
-    t.mon   = 11;
-    t.day   = 6;
-    t.hour  = 18;
-    t.min   = 7;
-    t.sec   = 22;
-}
+unsigned int year     = 2017;
+unsigned int month    = 11;
+unsigned int day      = 6;
+unsigned int hour     = 18;
+unsigned int minute   = 7;
+unsigned int sec      = 22;
+
+datetimeInfo t;
+
 char date[11];
 char time[10];
+
+// initialize variables for GPS UTC time data reading
+unsigned char *utc_date_time = 0;
+char bufferDateTime[30] = {0,};
+
+unsigned int GPSyear      = 0;
+unsigned int GPSmonth     = 0;
+unsigned int GPSday       = 0;
+unsigned int GPShour      = 0;
+unsigned int GPSminute    = 0;
+unsigned int GPSsec       = 0;
+
+const int timeZone = +1;  // add here the amount of hours difference of your time zone compared to GMT
+                          // if not sure about your time zone try this http://everytimezone.com/
+
+boolean GPSDateTimeSynced = false;
+boolean GPStimeConverted = false;
 
 // initialize variables for audio module
 #define    FILE_NAME    "rephone_audio.mp3"
@@ -207,6 +224,7 @@ boolean checkGPS() {
     /* if GPS module is not connected */
     case 0:
       GPSState = "OFF";
+      Serial.println("GPS is OFF");
       return false;
       break;
     /* if GPS module is connected */
@@ -215,17 +233,20 @@ boolean checkGPS() {
       /* if GPS Status is V(=navigation receiver warning) */
       if (LGPS.get_status()==86) {
           GPSStatus = "Sync  ";
+          Serial.println("GPS is V");
       }
       /* if GPS Status is A(=Valid position) */
       else if (LGPS.get_status()==65) {
         GPSStatus = "Ready";
-        return true;
+        Serial.println("GPS is A");
+        return true;        
         break;
       } else {
         GPSStatus = "Error";
+        Serial.println("GPS is ERROR");
       }
       break;
-  }
+  }  
 }
 
 
@@ -250,7 +271,7 @@ boolean checkSIM() {
 
 
 //////////////////////////////////////////////////////////
-///////////////////   CHECK SYSTEM   //////////////////////
+///////////////////   CHECK SYSTEM   /////////////////////
 //////////////////////////////////////////////////////////
 /* 
    If Xadow modules are connected and receiving
@@ -259,6 +280,8 @@ boolean checkSIM() {
 boolean checkSystem(){
   if(checkSensorHub()==true && checkGPS()==true && checkSIM()==true){
     systemCheck = "Ready :)";
+    // if GPS available sync time with GPS UTC time
+    GPStimeSync();      
     return true;
   } else {
     systemCheck = "Error :(";
@@ -641,6 +664,64 @@ void doTheCall() {
 
 
 
+//////////////////////////////////////////////////////////
+////////////////////   DATE TIME   ///////////////////////
+//////////////////////////////////////////////////////////
+
+void GPStimeSync(){
+  if(GPSDateTimeSynced==false){
+      convertGPStimeToInt();
+      time_init();
+      LDateTime.setTime(&t);
+      LcdExt.screen_set(0x000000);  // flush the screen
+  }
+}
+
+void convertGPStimeToInt(){
+  // get the time from GPS
+  utc_date_time = LGPS.get_utc_date_time();
+ 
+  sprintf(bufferDateTime, "%d", utc_date_time[0]);
+  GPSyear = atoi(bufferDateTime);
+  Serial.println(GPSyear);
+  sprintf(bufferDateTime, "%d", utc_date_time[1]);
+  GPSmonth = atoi(bufferDateTime);
+  Serial.println(GPSmonth);
+  sprintf(bufferDateTime, "%d", utc_date_time[2]);
+  GPSday = atoi(bufferDateTime);
+  Serial.println(GPSday);
+  sprintf(bufferDateTime, "%d", utc_date_time[3]);  // get GPS UTC hour data
+  GPShour = (atoi(bufferDateTime))+timeZone;  // convert GPS UTC hour data into integer (and add/subtract time zone)
+  Serial.println(GPShour);
+  sprintf(bufferDateTime, "%d", utc_date_time[4]);
+  GPSminute = atoi(bufferDateTime);
+  Serial.println(GPSminute);
+  sprintf(bufferDateTime, "%d", utc_date_time[5]);
+  GPSsec = atoi(bufferDateTime);
+  Serial.println(GPSsec);
+
+  GPStimeConverted = true;  // set flag to enter time_init()
+}
+
+void time_init()
+{
+  if(GPStimeConverted==true){
+    t.year  = GPSyear+2000;
+    t.mon   = GPSmonth;
+    t.day   = GPSday;
+    t.hour  = GPShour;
+    t.min   = GPSminute;
+    t.sec   = GPSsec;
+    GPSDateTimeSynced = true; // set flag to execute onlt once
+  } else {
+    t.year  = year;
+    t.mon   = month;
+    t.day   = day;
+    t.hour  = hour;
+    t.min   = minute;
+    t.sec   = sec;
+  }
+}
 
 
 
