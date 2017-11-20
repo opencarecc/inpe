@@ -1,4 +1,3 @@
-﻿#include <LDisplay.h>
 #include <LSensorHub.h>
 #include <LAudio.h>
 #include <LGTouch.h>
@@ -8,6 +7,7 @@
 #include <LGSM.h>
 #include <LBattery.h>    // Battery library
 #include <LCFile.h>
+#include <LDisplay.h>
 
 // initialize variables for GSM
 char *phoneNumber = "00393298616599";
