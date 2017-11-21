@@ -1,4 +1,4 @@
-name: InPe'
+name: InPe
 author: WeMake
 markdown: kramdown
 baseurl:
@@ -11,7 +11,7 @@ plugins:
 exclude: [README.md]
 github: [metadata]
 
-title: "InPe' by opencarecc"
+title: "InPe by opencarecc"
 tagline: "an open source wearable device that can detect fall and call for emergency"
 
 # multilingual stuff
@@ -23,15 +23,15 @@ default_lang: "en"
 
 # Facebook OpenGraph stuff
 opengraph:
-  title: "InPe' by opencarecc"
+  title: "InPe by opencarecc"
   url: "http://inpe.opencare.cc"
   description: "an open source wearable device that can detect fall and call for emergency"
   image_url: "http://opencarecc.github.io/inpe/assets/OC-Logo-socials.png"
 
 # Twitter Card stuff
 twitter:
-  site: "InPe' by opencarecc"
-  title: "InPe' by opencarecc"
+  site: "InPe by opencarecc"
+  title: "InPe by opencarecc"
   description: "an open source wearable device that can detect fall and call for emergency"
   creator: "opencarecc"
   domain: "http://inpe.opencare.cc"

@@ -18,7 +18,7 @@ global:
 # ---------------------------------
 # dictionary keys for homeheader.html include file
 header:
-  title: "InPe'"
+  title: "InPe"
   tagline: "an open source wearable device that can detect fall and call for emergency"
   buttons:
     - text: "View on GitHub"

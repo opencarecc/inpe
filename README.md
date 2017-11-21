@@ -1,22 +1,22 @@
-# InPe' @ opencare.cc
-InPe' is a wearable device that detects fall and call for emergecy.
+# InPe @ opencare.cc
+InPe is a wearable device that detects fall and call for emergecy.
 
-InPe' has been ideated and designed by communities living in the city of Milan (Italy), and developed by [WeMake](http://wemake.cc/) in the framework of the [opencare.cc](http://opencare.cc/) project.
+InPe has been ideated and designed by communities living in the city of Milan (Italy), and developed by [WeMake](http://wemake.cc/) in the framework of the [opencare.cc](http://opencare.cc/) project.
 
-InPe' is open source. Please read below for licensing details.
+InPe is open source. Please read below for licensing details.
 
 ## References
 * More info about the opencare.cc project can be found here <http://opencare.cc>
-* More info about the InPe' prototype can be found here <http://inpe.opencare.cc>
-* Tutorials about InPe' can be found here <https://github.com/opencarecc/inpe/wiki>
+* More info about the InPe prototype can be found here <http://inpe.opencare.cc>
+* Tutorials about InPe can be found here <https://github.com/opencarecc/inpe/wiki>
 
 ## Software
-The InPe' prototype is built on top of the *RePhone* hardware by Seeed Studio.
+The InPe prototype is built on top of the *RePhone* hardware by Seeed Studio.
 More info on how to get started with the RePhone and the RePhone development environment can be found in the wiki section of the repo <https://github.com/opencarecc/inpe/wiki>
 
 In the **software** folder of the repository are various Arduino *.ino* sketches, all of them can be ran by the RePhone hardware:
-* in the **software** root folder are the updated main sketches of the InPe' prototype (the "InPe-T\*" versions have been implemented for the user testing campaign)
-* in the **utilities** folder is a collection of sketches to test, calibrate and debug the hardware. They are useful to setup and customize an InPe', and for developers willing to contribute to the project to learn more about the library.
+* in the **software** root folder are the updated main sketches of the InPe prototype (the "InPe-T\*" versions have been implemented for the user testing campaign)
+* in the **utilities** folder is a collection of sketches to test, calibrate and debug the hardware. They are useful to setup and customize an InPe, and for developers willing to contribute to the project to learn more about the library.
 
 ## Hardware
 In the hardware section of the repository are the source files for the case *[coming soon...]*
@@ -53,7 +53,7 @@ This documentation is distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLU
 
 ##Contacts
 
-You can get in touch with us on the InPe' [website](http://inpe.opencare.cc/#comments) or by writing at: 
+You can get in touch with us on the InPe [website](http://inpe.opencare.cc/#comments) or by writing at: 
 opencare [@] wemake [dot] cc
 
 

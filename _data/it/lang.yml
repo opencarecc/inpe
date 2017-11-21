@@ -14,7 +14,7 @@ global:
 # ---------------------------------
 # dictionary keys for homeheader.html include file
 header:
-  title: "InPe'"
+  title: "InPe"
   tagline: "un dispositivo wearable che chiama i soccorsi in caso di caduta"
   buttons:
     - text: "Vedi su GitHub"
@@ -25,7 +25,7 @@ header:
       link: "https://github.com/opencarecc/inpe/wiki"
 
 # dictionary keys for description.html include file
-description: "Questa è la descrizione del progetto InPe'"
+description: "Questa è la descrizione del progetto InPe"
 
 # dictionary keys for video.html include file
 video:

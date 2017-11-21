@@ -6,15 +6,15 @@ ref: about
 lang: en
 ---
 
-# About InPe'
-InPe' is a simple device that helps taking care of someone in case they fall down. The device is designed as a wearable that calls the caregiver and sends sms with coordinates, in order for them to come and help the person who fell down.  Inspired by true stories, InPe, serves different needs such as elderly parents living by themselves, or helping a caregiver in a community center. 
+# About InPe
+InPe is a simple device that helps taking care of someone in case they fall down. The device is designed as a wearable that calls the caregiver and sends sms with coordinates, in order for them to come and help the person who fell down.  Inspired by true stories, InPe, serves different needs such as elderly parents living by themselves, or helping a caregiver in a community center. 
 
 
 Story telling was an important factor in understanding and elaborating on problems. One of the project participants in the codesign sessions described a personal story where she lost her mother because she fell down while she was alone, and couldn’t ask for immediate help.  The mother indeed, had a solution of a necklace which can send an alarm to police/friends, but she didn’t wear, because the device wasn’t user friendly. Ideas were published on [Edgeryders](https://edgeryders.eu/en), and given certain criterias, it was selected.  
 
 
-### InPe' Development
-WeMake team is developing InPe' as an open source hardware wearable device that could be replicated by others who might need it.  As of summer 2016 a first prototyping phase has started, please keep an eye on [blog](http://inpe.opencare.cc/blog/) for further developments.
+### InPe Development
+WeMake team is developing InPe as an open source hardware wearable device that could be replicated by others who might need it.  As of summer 2016 a first prototyping phase has started, please keep an eye on [blog](http://inpe.opencare.cc/blog/) for further developments.
 
 
 ### The Process
