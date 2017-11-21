@@ -2,8 +2,14 @@
 layout: post
 title: Title of your post
 date: 'June 04 2016 12:00:00  (CEST)'''
-categories: null
+subtitle:
+image:
+categories: news
+by: WeMake
 published: true
+excerpt:
+lang: en
+ref: 
 ---
 
 
@@ -30,7 +36,7 @@ In the following Album on Flickr you can explore high resolution images of the f
 
 ![In Pe']({{site.baseurl}}/https://www.flickr.com/photos/wemake_cc/31597735842/sizes/z/)
 
-[Explore the whole gallery](https://www.flickr.com/photos/wemake_cc/albums/72157674118203044 "Explore the whole gallery")  
+[Explore the whole gallery](https://www.flickr.com/photos/wemake_cc/albums/72157674118203044 "Explore the whole gallery")
 * * *
 
 
@@ -90,7 +96,7 @@ Check the video report of the opencare booth at Maker Faire Rome 2016! It was a 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/1760elt3jR8" frameborder="0" allowfullscreen></iframe>
 
-In Pe’ prototyped was showcased in the booth together with the Playbook and Domus Academy projects by students. 
+In Pe’ prototyped was showcased in the booth together with the Playbook and Domus Academy projects by students.
 
 Explore the [gallery on Flickr](https://www.flickr.com/photos/wemake_cc/albums/72157674351388770)
 

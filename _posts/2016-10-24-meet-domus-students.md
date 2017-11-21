@@ -2,8 +2,14 @@
 layout: post
 title: Meet Domus’ students and their prototypes
 date: 'October 24 2016 12:00:00  (CEST)'''
-categories: null
+subtitle:
+image:
+categories: news
+by: WeMake
 published: true
+excerpt:
+lang: en
+ref: 
 ---
 
 ![Image Opencare](https://c2.staticflickr.com/6/5750/30448963766_907d7a9d1f_z.jpg)

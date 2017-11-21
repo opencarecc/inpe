@@ -2,8 +2,14 @@
 layout: post
 title: Testing first InPe’ Prototype
 date: 'June 20 2016 12:00:00  (CEST)'''
-categories: null
+subtitle:
+image:
+categories: news
+by: WeMake
 published: true
+excerpt:
+lang: en
+ref:
 ---
 
 **Testing first InPe’ Prototype**

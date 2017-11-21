@@ -3,8 +3,14 @@ layout: post
 title: In Pe gets ready for Maker Faire Rome
 date:
   'Thu Oct 06 2016 02:00:00 GMT+0200 (CEST)': null
-categories: null
+subtitle:
+image:
+categories: news
+by: WeMake
 published: true
+excerpt:
+lang: en
+ref: 
 ---
 
 ![InPe](https://c2.staticflickr.com/6/5561/30399316971_da73568b2b_z.jpg)

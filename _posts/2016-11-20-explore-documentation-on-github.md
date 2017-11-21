@@ -2,8 +2,14 @@
 layout: post
 title: Explore In Pe’ prototype documentation on Github
 date: 'November 20 2016 12:00:00  (CEST)'''
-categories: null
+subtitle:
+image:
+categories: news
+by: WeMake
 published: true
+excerpt:
+lang: en
+ref: 
 ---
 
 ![image githubrepository](https://c2.staticflickr.com/2/1496/25698634244_0762c55edf_z.jpg)
