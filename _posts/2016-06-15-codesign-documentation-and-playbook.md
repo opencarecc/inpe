@@ -12,8 +12,6 @@ lang: en
 ref: co-design-documentation-and-playbook
 ---
 
-![image codesign](https://c2.staticflickr.com/8/7736/26243604794_7206baac02_z.jpg)
-
 During the past months the Municipality of Milan and WeMake met groups of citizens and collaborative communities to start engaging them in Opencare.
 
 Then we organized three co-design sessions, which involved participants from different backgrounds and with different needs.  Check the reports written by Municipality of Milan  for each sessions: [first](https://edgeryders.eu/en/opencare-research/report-local-activity-co-design) - [second](https://edgeryders.eu/en/opencare-research/report-local-activity-co-design-second-session) - [third](https://edgeryders.eu/en/opencare-research/report-local-activity-co-design-3)  and [explore the gallery on Flickr.](https://www.flickr.com/photos/wemake_cc/albums/72157667820435861)
