@@ -97,6 +97,7 @@ boolean smsSent = false;  // check to send SMS only once
 
 // string to save the System Ready or System Error data
 char *systemCheck;
+unsigned int systemCheckStatus = 0;
 
 // string to save the Sensor Hub Status (ON/OFF) data 
 char *sensorHubStatus;
@@ -272,15 +273,20 @@ boolean checkSIM() {
    If Xadow modules are connected and receiving
    correct data show visual feedback
 */
-boolean checkSystem(){
+void checkSystem(){
   if(checkSensorHub()==true && checkGPS()==true && checkSIM()==true){
     systemCheck = "Ready :)";
     // if GPS available sync time with GPS UTC time
     GPStimeSync();      
-    return true;
+//    return true;
+    systemCheckStatus = 1;
+  } else if(checkSensorHub()==true && checkGPS()==false && checkSIM()==true){
+    systemCheck = "Ready :)";
+    systemCheckStatus = 2;
   } else {
     systemCheck = "Error :(";
-    return false;
+//    return false;
+    systemCheckStatus = 3;
   }
 }
 
