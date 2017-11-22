@@ -3,7 +3,7 @@ layout: post
 title: Co-design documentation and Playbook
 date: 2016-06-15
 subtitle: lorem ipsum
-image: https://c2.staticflickr.com/8/7736/26243604794_7206baac02_z.jpg
+image: "https://c2.staticflickr.com/8/7736/26243604794_7206baac02_z.jpg"
 categories: news
 by: WeMake
 published: true

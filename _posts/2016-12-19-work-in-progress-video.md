@@ -1,20 +1,18 @@
 ---
 layout: post
-title: Work in progress video of InPe’
+title: Work in progress video of InPe
 date: 'December 19 2016 12:00:00  (CEST)'''
 subtitle:
-image:
+image: "http://wemake.cc/core/uploads/2017/03/zava-costa.jpg"
 categories: news
 by: WeMake
 published: true
 excerpt:
 lang: en
-ref: 
+ref:
 ---
 
-![image video](http://wemake.cc/core/uploads/2017/03/zava-costa.jpg)
-
-Check our latest multimedia documentation about  InPe’!
+Check our latest multimedia documentation about  InPe!
 
 This video was shot during our interaction with Fabio Pinciroli and Francesco Zava of Cooperativa Sociale Alatha which accepted to take part to the testing phase:
 

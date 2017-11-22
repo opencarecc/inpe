@@ -3,16 +3,14 @@ layout: post
 title: What happened at MakerFaire?
 date: 'October 18 2016 12:00:00  (CEST)'''
 subtitle:
-image:
+image: "https://c2.staticflickr.com/6/5635/30485457845_f8fd769d50_z.jpg"
 categories: news
 by: WeMake
 published: true
 excerpt:
 lang: en
-ref: 
+ref:
 ---
-
-![image makerfaire](https://c2.staticflickr.com/6/5635/30485457845_f8fd769d50_z.jpg)
 
 Check the video report of the opencare booth at Maker Faire Rome 2016! It was a lot of fun and a special thanks to all the people who visited us :)
 

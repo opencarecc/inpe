@@ -3,7 +3,7 @@ layout: post
 title: Testing first InPe’ Prototype
 date: 'June 20 2016 12:00:00  (CEST)'''
 subtitle:
-image:
+image: "http://wemake.cc/core/uploads/2016/10/OC-img_inp%C3%A82-980x573.jpg"
 categories: news
 by: WeMake
 published: true
@@ -13,7 +13,6 @@ ref:
 ---
 
 **Testing first InPe’ Prototype**
-![image inpeprot](http://wemake.cc/core/uploads/2016/10/OC-img_inp%C3%A82-980x573.jpg)
 
 In this post on [Edgeryders](https://edgeryders.eu/en/opencare-research/prototype01-preliminary-development-plan) you will find a first draft of the development plan for the first #opencare prototype.
 

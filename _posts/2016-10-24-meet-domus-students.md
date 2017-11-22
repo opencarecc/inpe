@@ -3,17 +3,14 @@ layout: post
 title: Meet Domus’ students and their prototypes
 date: 'October 24 2016 12:00:00  (CEST)'''
 subtitle:
-image:
+image: "https://c2.staticflickr.com/6/5750/30448963766_907d7a9d1f_z.jpg"
 categories: news
 by: WeMake
 published: true
 excerpt:
 lang: en
-ref: 
+ref:
 ---
-
-![Image Opencare](https://c2.staticflickr.com/6/5750/30448963766_907d7a9d1f_z.jpg)
-
 
 The end of the [Rome Makerfaire](http://www.makerfairerome.eu/en/) marked the closure of the workshop lead by WeMake at Domus Academy, in order to help interaction design students start projects ideas and prototypes on Opencare topics.
 

@@ -1,19 +1,16 @@
 ---
 layout: post
-title: Explore In Pe’ prototype documentation on Github
+title: Explore InPe prototype documentation on Github
 date: 'November 20 2016 12:00:00  (CEST)'''
 subtitle:
-image:
+image: "https://c2.staticflickr.com/2/1496/25698634244_0762c55edf_z.jpg"
 categories: news
 by: WeMake
 published: true
 excerpt:
 lang: en
-ref: 
+ref:
 ---
-
-![image githubrepository](https://c2.staticflickr.com/2/1496/25698634244_0762c55edf_z.jpg)
-
 
 Do you want to make or understand a bit more about the technicalities of InPe’? Check out our repository on Github.
 
