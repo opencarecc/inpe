@@ -25,7 +25,7 @@ header:
       link: "https://github.com/opencarecc/inpe"
     - text: "Download .zip"
       link: "https://github.com/opencarecc/inpe/zipball/master"
-    - text: "Coming soon!"
+    - text: "Wiki | How to"
       link: "https://github.com/opencarecc/inpe/wiki"
 
 # dictionary keys for description.html include file
@@ -67,9 +67,13 @@ image_index: "<img src='https://opencarecc.github.io/rehub/assets/RH-home-image.
 release_notes:
   title: "Release 0.1 - 2016/09/12"
   notes:
-    - note: "Note 1"
-    - note: "Note 2"
-    - note: "Note 3"
+    - note: "Free fall detection"
+    - note: "Send SMS to a pre-configured phone number when fall detected"
+    - note: "Show Date and Time"
+    - note: "Show battery status"
+    - note: "Check system health"
+    - note: "Test mode for user testing"
+
   more_link:
     - text: "More details"
       link: "about"
@@ -102,7 +106,7 @@ tutorials:
 license:
   title: "Open Source"
   license_content_html: "<img src='https://opencarecc.github.io/breathinggames/assets/Open-Source-Initiative-logo.png'>
-  <p><b>reHub</b> is an <b>Open Source</b> project.</p>
+  <p><b>InPe</b> is an <b>Open Source</b> project.</p>
   <p><i>[The licence specifications will follow.]</i></p>"
 
 # dictionary keys for credits.html include file
@@ -118,9 +122,9 @@ credits:
 contribute:
   title: "How to contribute"
   contribution_guidelines:
-    - guideline: "Contribute 1"
-    - guideline: "Contribute 2"
-    - guideline: "Contribute 3"
+    - guideline: "Bug reporting and contributions are managed via Github issues. Please find more details <a href='https://github.com/opencarecc/inpe/blob/master/README.md#bug-reporting-and-contributions'> here</a>"
+    - guideline: Software - GNU General Public License
+    - guideline: Hardware - CERN OHL v.1.2
   more_link:
     - text: "Read more"
       link: "about"
