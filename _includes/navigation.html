@@ -11,7 +11,7 @@
 
 <!-- Then we build the nav bar. -->
 <header>
-    <div id="nav-container">    
+    <div id="nav-container">
         <a href="{{ site.baseurl }}/{{ site.index[page.lang] }}">
             <img src="{{ site.baseurl }}/assets/OC-Logo-colortext.svg">
             <!-- {{ site.data[page.lang].lang["project_logo"] }} -->
@@ -26,7 +26,7 @@
             <label for="nav-trigger"></label>
 
             <!-- Language picker stuff: IMPORTANT DO NOT MOVE -->
-            <div id="lang-picker">
+          <!-- <div id="lang-picker">
                 <input type="checkbox" id="lang-trigger">
                 <label for="lang-trigger">
                     <li class="dropdown">
@@ -39,9 +39,9 @@
                               {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
                               {% for page in pages %} <li><a href="{{ page.url | prepend: site.baseurl }}" class="{{ page.lang }}">{{ page.lang }}</a></li> {% endfor %}
                         </ul>
-                    </li>               
+                    </li>
                 </label>
-            </div>
+            </div> -->
 
             <!-- populate nav menu -->
             <ul>
@@ -57,7 +57,7 @@
                     <!-- dropdown trigger for mobile: IMPORTANT DO NOT MOVE -->
                     <input type="checkbox" id="dropdown-trigger">
                     <label for="dropdown-trigger">
-                        <li class="dropdown {{ current }}">    
+                        <li class="dropdown {{ current }}">
                             <!-- <a href="{{ site.baseurl }}{{ entry.url }}"> -->{{ entry.title }}<!-- </a> -->
                             <ul class="dropdown-content">
                                 {% for sublink in sublinks %}
