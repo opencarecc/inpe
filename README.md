@@ -32,7 +32,7 @@ If you want to contribute with a new feature please open a new issue under the *
 
 Copyright (C) 2016 WeMake
 
-###Software
+### Software
 
 This program is free software: you can redistribute it and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html) as published by the Free Software Foundation, either version 3 of the License, or any later version.
 
@@ -41,7 +41,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-###Hardware
+### Hardware
 
 Copyright 2016 WeMake.
 
@@ -51,7 +51,7 @@ You may redistribute and modify this documentation under the terms of the CERN O
 This documentation is distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A PARTICULAR PURPOSE. Please see the CERN OHL v.1.2 for applicable conditions
 
 
-##Contacts
+## Contacts
 
 You can get in touch with us on the InPe' [website](http://inpe.opencare.cc/#comments) or by writing at: 
 opencare [@] wemake [dot] cc
